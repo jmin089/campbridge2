@@ -85,7 +85,7 @@
 				      <tr>
 				        <td id="No"><span style="background: #009223; color: #ffce32; border-radius: 3px; ">${fbdto.f_bno }</span></td>
 				        <td><strong>${fbdto.f_btype }</strong></td>
-				        <td class="table-title"><a href="fView?f_bno=${fbdto.f_bno }">${fbdto.f_btitle}</a></td>
+				        <td class="table-title1"><a href="fView?f_bno=${fbdto.f_bno }">${fbdto.f_btitle}</a></td>
 				        <td>${fbdto. id}</td>
 				        <td>
 				        <fmt:formatDate value="${fbdto.f_bdate }" pattern="yyyy-MM-dd"/></td>

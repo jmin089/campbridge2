@@ -1,14 +1,20 @@
 package com.java.www.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.www.dto.User_campDto;
+import com.java.www.service.EmailService;
 import com.java.www.service.User_campService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,13 +24,12 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("my")
 public class MyController {
 	
-	@Autowired
-	User_campService userCampService;
+	@Autowired User_campService userCampService;
+	
+	@Autowired HttpSession session;
 	
 	@Autowired
-	HttpSession session;
-	
-
+	EmailService emailService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -62,41 +67,6 @@ public class MyController {
 		return "/my/doLogin";
 	}// doLogin()
 	
-	//로그인2
-	@RequestMapping("login")
-	public String doLogin2(User_campDto ucdto, Model model, HttpServletRequest request) {
-		int result = 0;
-		System.out.println("MyController id : "+ucdto.getId());
-		System.out.println("MyController pw : "+ucdto.getPw());
-		User_campDto usercampDto = userCampService.loginSelect2(ucdto); 
-		if(usercampDto!=null) {
-			session.setAttribute("session_id", usercampDto.getId());
-			session.setAttribute("session_name", usercampDto.getName());
-			System.out.println("MyController id 있음 : "+usercampDto.getId());
-			result = 1;
-		}else {
-			System.out.println("MyController usercampDto : null");
-		}
-		model.addAttribute("result",result);
-		return "/my/login";
-	}
-	
-	
-	
-	//관리자로그인
-    @GetMapping("/admin/adminPage")
-    public String adminPage() {
-        return "admin/adminPage";
-    }
-
-	
-	
-	
-	
-	
-	
-
-	
 	//////////////////////////////////////////로그인(id, pw 찾기)
 	//id 찾기
 	@GetMapping("idpw_search") //idsearch페이지열기
@@ -104,45 +74,52 @@ public class MyController {
 		return "/my/idpw_search";
 	}// idpw_search()
 	
-	
-	
-	@PostMapping("id_s") //ajax 아이디찾기- name,email
+	@PostMapping("idSearch") //ajax 아이디찾기- name,email
 	@ResponseBody
-	public String id_s(String name, String email) {
+	public String idSearch(String name, String email) {
 		System.out.println("FC idsearch name : "+name);
 		System.out.println("FC idsearch email : "+email);
-		String result = userCampService.idsearch(name,email);
+		User_campDto usercampDto = userCampService.idsearch(name,email);
+		String result = "";
+		String tempId=""; //임시아이디
+		if(usercampDto!=null) {
+			tempId = usercampDto.getId().substring(0,usercampDto.getId().length()-2);
+			tempId += "**";
+			System.out.println("찾은 아이디 : "+tempId);
+			result = tempId;
+		}else {
+			result="fail";
+		}
 					
 		return result;
-	}// id_s()
+	}// idSearch()
 
-	
 	//id 찾기완료
 	@GetMapping("idsearch")
 	public String idsearch() {
 		return "/my/idsearch";
 	}// login()
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	//비밀번호 찾기
-	@PostMapping("pw_s")
+	@PostMapping("pwsearch")
 	@ResponseBody
-	public String pw_s(String id, String email) {
-		System.out.println("MyController id_s : "+id);
+	public String pwsearch(String id, String email) {
+		System.out.println("MyController id : "+id);
+		System.out.println("MyController email : "+email);
 		//service연결 비밀번호 찾기-아이디,이메일검색
-		String result = userCampService.pw_s(id,email);
+		String result = userCampService.pwsearch(id,email);
 		return result;
 	}
 	
-	
-	
+	@PostMapping("email")
+	@ResponseBody
+	public String email(String email) {
+		System.out.println("MController email : "+email);
+		
+		//service연결 - 이메일주소 보냄.
+		String result = emailService.mailSend(email);
+		return result;
+	}
 	
 	@PostMapping("pwChk") //인증코드 확인
 	@ResponseBody
@@ -154,38 +131,68 @@ public class MyController {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//pw 찾기완료
 	@GetMapping("pwsearch")
 	public String pwsearch() {
 		return "/my/pwsearch";
 	}// login()
 	
-	
+	//==================================회원가입
 	//회원가입 페이지
 	@GetMapping("signUp")
 	public String signUp() {
 		return "/my/signUp";
 	}// signUp()
 	
-	
 	//회원가입 저장
 	@PostMapping("signUp")
-	@ResponseBody
-	public String signUp(User_campDto ucdto) {
+	public String signUp(User_campDto ucdto, @RequestPart MultipartFile file, Model model, 
+			String mail_id, String mail_tail,
+			String address1, String address2,
+			String f_tell, String m_tell, String l_tell) throws Exception {
+		String email = mail_id+"@"+mail_tail;
+		String address = address1+"　"+address2;
+		String phone =  f_tell+"-"+m_tell+"-"+l_tell;
 		
-		String result = userCampService.signUp(ucdto);
-		return result;
+		ucdto.setEmail(email);
+		ucdto.setAddress(address);
+		ucdto.setPhone(phone);
+		
+		//파일업로드 정보 - 파일저장위치
+		String fileUrl = "c:/upload/";
+		String mfileName = "";
+		System.out.println("이름 : "+ucdto.getName());
+		
+		//파일첨부가 되었는지 확인
+		if(!file.isEmpty()) {
+			int i = 0;
+				String orgfileName = file.getOriginalFilename();
+				long time = System.currentTimeMillis();
+				String uploadFileName = time+"_"+orgfileName;
+				System.out.println("파일이름 : "+uploadFileName);
+				
+				//파일업로드 - 파일이 c:/upload폴더에 추가됨.
+				File f = new File(fileUrl+uploadFileName);
+				file.transferTo(f);
+				
+				if(i==0) mfileName += uploadFileName;
+				else mfileName +=","+uploadFileName;
+				
+				i++;
+				
+		}//if
+		
+		//파일첨부가 없으면 빈공백, 1.jpg
+		ucdto.setM_img(mfileName);
+		System.out.println("최종이름 : "+mfileName);
+		
+		//회원가입 저장 service호출
+		userCampService.signUpinsert(ucdto);
+		
+		model.addAttribute("signUp","success");
+		
+		return "/my/signUp02";
 	}// signUp()
-	
 	
 	@PostMapping("idCheck")
 	@ResponseBody
@@ -193,17 +200,12 @@ public class MyController {
 		String result = userCampService.idCheck(id);
 		return result;
 	}
-
 	
 	//회원가입 완료
 	@GetMapping("signUp02")
 	public String signUp02() {
 		return "/my/signUp02";
 	}// signUp02()
-	
-	
-	
-	
 	
 	@RequestMapping("myPage")
 	public String myPage() {

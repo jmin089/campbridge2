@@ -54,11 +54,6 @@ input[type="radio"]:checked+label{background: #009223; color: #fff; float: left;
     margin-right: 10px;
 }
 
-.brief_description  {
-  max-height: 3em; /* 두 줄 내용에 맞게 필요한 값으로 조절하세요 */
-  overflow: hidden;
-}
-
 .brief_title {
     white-space: nowrap;
     overflow: hidden;

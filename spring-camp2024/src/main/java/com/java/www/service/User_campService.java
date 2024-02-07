@@ -8,20 +8,19 @@ public interface User_campService {
 	//로그인
 	User_campDto loginSelect(User_campDto ucdto);
 
-	//로그인2
-	User_campDto loginSelect2(User_campDto ucdto);
-
-	//아이디찾기
-	String idsearch(String name, String email);
-
-	//회원가입 저장
-	String signUp(User_campDto ucdto);
-
 	//아이디체크
 	String idCheck(String id);
+	
+	//아이디찾기
+	User_campDto idsearch(String name, String email);
 
 	//비밀번호찾기
-	String pw_s(String id, String email);
+	String pwsearch(String id, String email);
+
+
+	//회원가입 저장
+	void signUpinsert(User_campDto ucdto);
+
 
 
 

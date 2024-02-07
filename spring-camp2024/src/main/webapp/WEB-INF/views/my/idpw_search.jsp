@@ -29,6 +29,8 @@
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 	    <link href="../assets/css/header.css" rel="stylesheet">
 	    <link href="../assets/css/my/idpw_search.css" rel="stylesheet">
+	    
+	    <script src="../assets/js/my/login.js"></script>
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -43,37 +45,43 @@
 			<div id="searchIP_contents">
 				<div id="searchIP_member">
 					<div id="searchIP_title">
-					<img src="../assets/img/idpwsearch.png">
+					<img src="../assets/img/login/idpwsearch.png">
 					<h1>아이디/비밀번호 찾기</h1>
 					</div>
 					
 					<div id ="idsearch">
 					<h3>아이디 찾기</h3>
 					<div class="searchIP_informbox">
+						<form id="findForm" action="${contextPath}/my/idpw_search" method="post">
 						<div class="searchIP_inform">
 							<ul>
-								<li><input type="text" class="idsearch_name" name="idsearch_name" placeholder="이름"/></li>
-								<li><input type="text" class="idsearch_email" name="idsearch_email" placeholder="이메일" /></li>
+								<li><input type="text" id="idName" class="idsearch_name" name="idsearch_name" placeholder="이름"/></li>
+								<li><input type="text" id="idEmail" class="idsearch_email" name="idsearch_email" placeholder="이메일" /></li>
 							</ul>
 
-							<input type="button" class="btn searchIP_gbtn" name="searchIP_gbtn" value="아이디 찾기">
+							<input type="button" id="idSBtn" class="btn searchIP_gbtn" name="searchIP_gbtn" value="아이디 찾기">
 						</div><!-- searchIP_inform -->
+						</form>
 					</div><!-- searchIP_informbox -->
 					</div>
+					
+				
+					
 
 					<div id="pwsearch">
 					<h3>비밀번호 찾기</h3>
 					<div class="searchIP_informbox">
 						<div class="searchIP_inform">
 							<ul>
-								<li><input type="text" class="pwsearch_id" name="pwsearch_id" placeholder="아이디"/></li>
-								<li><input type="text" class="pwsearch_email" name="pwsearch_email" placeholder="이메일"/></li>
+								<li><input type="text" id="pwId" class="pwsearch_id" name="pwsearch_id" placeholder="아이디"/></li>
+								<li><input type="text" id="pwNEmail" class="pwsearch_email" name="pwsearch_email" placeholder="이메일"/></li>
 							</ul>
 
-							<input type="button" class="btn searchIP_gbtn" name="searchIP_gbtn" value="비밀번호찾기">
+							<input type="button" id="pwSBtn" class="btn searchIP_gbtn" name="searchIP_gbtn" value="비밀번호찾기">
 						</div><!--searchIP_inform  -->
 					</div><!-- searchIP_informbox -->
 					</div>
+					
 
 
 				</div><!--searchIP_member -->

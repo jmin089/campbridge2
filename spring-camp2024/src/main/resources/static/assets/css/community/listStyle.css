@@ -36,6 +36,20 @@ table {
 	border: 2px solid #009223;
 }
 
+.table-title1 {
+	text-align: left;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	max-width:557px;
+}
+.table-title1 a {
+	table-layout:fixed;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+
 #searchTitle {
 	width: 100px;
 	text-align: center;
@@ -167,7 +181,7 @@ th, td {
 
 .num>div {
 	position: relative;
-	top: 2px;
+	
 }
 
 .next {

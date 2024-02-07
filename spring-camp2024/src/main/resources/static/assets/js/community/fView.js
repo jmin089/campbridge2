@@ -102,7 +102,7 @@ $(function() {
 		//alert("댓글 작성일 : "+$(this).parent().parent().find("span").text()); // 작성일
 
 		let f_cno = $(this).closest("tr").attr("id");
-		let id = "${session_id}";
+		let id = $(this).parent().parent().find(".f_cid").text();
 		let f_cdate = $(this).parent().parent().find("span").text();
 		let f_ccontent = $(this).parent().prev().text();
 		let f_cpw = $(this).parent().parent().prev().val();
@@ -169,7 +169,7 @@ $(function() {
 		//alert("댓글 수정을 취소 f_cdate : "+$(this).parent().parent().find("span").text());
 		//alert("댓글 수정을 취소 f_ccontent : "+$(this).parent().prev().text());
 		let f_cno = $(this).closest("tr").attr("id");
-		let id = "${session_id}"; //${session_id} 변경예정
+		let id = $(this).parent().parent().parent().parent().find(".f_cid").text(); //${session_id} 변경예정
 		let f_cdate = $(this).parent().parent().parent().parent().find("span").text();
 		let f_ccontent = $(this).parent().parent().parent().prev().find("textarea").val();
 		let f_cpw = $(this).parent().parent().parent().parent().find("strong").find("input").val();

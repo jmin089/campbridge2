@@ -53,11 +53,10 @@
 	    	<h1 style="float: left; margin: 40px 0 0 700px; font-weight: 700; position: relative; left:50px;">공지사항 게시글</h1>
 		    <table class="view_table">
 		     <colgroup>
-		        <col width="10%">
-		        <col width="51%">
 		        <col width="15%">
-		        <col width="12%">
-		        <col width="12%">
+		        <col width="55%">
+		        <col width="15%">
+		        <col width="15%">
    			</colgroup>
 		     <tr id="notice_top">
 		        <th style="text-align: center;"><strong>${map.nbdto.n_bno}</strong></th>
