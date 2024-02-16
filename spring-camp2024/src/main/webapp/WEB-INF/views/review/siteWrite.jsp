@@ -44,6 +44,7 @@
   		<style type="text/css">
   			#cps_btitle{width: 900px; margin-left: -50px; border: none;}
   		</style>
+  		
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -90,7 +91,7 @@
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td style="text-align: left;"><strong>작성자 | </strong></td>
-			        <td><input type="text" value="aaa" name="id" readonly="readonly" style="border: 1px solid transparent; margin-left: -40px;"> </td>
+			        <td><input type="text" value="${session_id}" name="id" readonly="readonly" style="border: 1px solid transparent; margin-left: -40px;"> </td>
 			      </tr>
 			      <tr>
 			        <td colspan="4" class="article"><textarea rows="9" name="cps_bcontent" id="summernote" placeholder=" ※ 게시글 내용을 입력해주세요."></textarea> </td>
@@ -100,6 +101,7 @@
 			      </tr>
 			    </table>
 			</form>
+			
 			<div class="listBtn">
 		    	<a><div class="list" id="re_saveBtn">작성완료</div></a>
 		    	<a href="siteReview"><div class="list">작성취소</div></a>

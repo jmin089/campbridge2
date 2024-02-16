@@ -1,5 +1,5 @@
 /**
- * fList.jsp파일
+ * pList.jsp파일
  */
 $(function() {
 	$("#searchBtn").click(function() {
@@ -9,8 +9,8 @@ $(function() {
 			return false;
 		}//if(검색어 미입력시)
 		alert("입력하신 검색어로 검색합니다.");
-		fSearchFrm.submit();
-	});//#searchBtn(자유게시판 검색어)
+		pSearchFrm.submit();
+	});//#searchBtn(파티원 모집 검색어)
 });//제이쿼리 최신
 
 

@@ -1,8 +1,7 @@
 /**
- * siteWrite.jsp파일
+ * pWrite.jsp파일
  */
 $(function() {
-	/*
 	$('#summernote').summernote({
 		height: 300,                // 에디터 높이
 		minHeight: 300,          // 에디터 최소 높이
@@ -11,6 +10,7 @@ $(function() {
 		lang: "ko-KR",         // 한글 설정
 		placeholder: ' ※ 최대 2048자까지 쓸 수 있습니다', //placeholder 설정
 		toolbar: [
+			// [groupName, [list of button]]
 			['fontname', ['fontname']], //글꼴 설정
 			['fontsize', ['fontsize']], //글자 크기
 			['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
@@ -26,8 +26,8 @@ $(function() {
 
 		callbacks: { //여기 부분이 이미지를 첨부하는 부분
 			onImageUpload: function(files) {
-				//하단함수 호출
-				uploadImage(files[0], this); //이미지 업로드 함수호출 - 이미지파일, 현재위치값
+				//이미지 업로드 함수호출 - 매개변수 : 이미지 파일, 현재위치
+				uploadFile(files[0], this); //이미지 업로드 함수호출 - 이미지파일, 현재위치값
 			},
 			onPaste: function(e) {
 				var clipboardData = e.originalEvent.clipboardData;
@@ -40,13 +40,13 @@ $(function() {
 				}//if
 			}//onPaste
 		} //callbacks
-	});//summernote	
-	*/
 
-	$("#re_saveBtn").click(function() {
-		if ($("#cps_btitle").val().length < 1) {
+	});//summernote	
+
+	$("#partySaveBtn").click(function() {
+		if ($("#p_btitle").val().length < 1) {
 			alert("게시글 제목을 입력해주세요.");
-			$("#cps_btitle").focus();
+			$("#p_btitle").focus();
 			return false;
 		}//if(게시글 제목 미입력시)
 
@@ -55,20 +55,20 @@ $(function() {
 			$("#summernote").focus();
 			return false;
 		}//if(게시글 내용 미입력시)
-		
-		siteWriteFrm.submit();
-		
-	});//#saveBtn
+
+		partyWriteFrm.submit();
+
+	});//#partySaveBtn
 
 });//제이쿼리 최신
 
 //♠ajax로 파일을 서버에 전송하는 부분
-function uploadImage(file, this_location) {//매개변수 - file: 이미지 파일, 현재위치값(this_location)
+function uploadFile(file, this_location) {//매개변수 - file: 이미지 파일, 현재위치값(this_location)
 	var fdata = new FormData(); //ajax에서 전송할때 form형태로 전송
-	fdata.append("file", file);//file이미지를 첨부
+	fdata.append("pFile", file);//file이미지를 첨부
 	//♠ajax
 	$.ajax({
-		url: "/uploadImage",
+		url: "/community/summernotePartyWrite",
 		type: "post",
 		dataType: "text",//파일을 받는 형태
 		data: fdata,

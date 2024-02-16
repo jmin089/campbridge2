@@ -59,21 +59,43 @@
 						
 						<div class="bbs-sch">
 						   <!-- .검색 폼시작 -->
-						   <form action="siteReview" name="re_search" method="get" id="searchForm">
-						      <fieldset>
-						         <legend>게시판 검색 폼</legend>
-						         <label><input type="checkbox" name="re_category" value="re_all" checked>전체</label>
-						         <label><input type="checkbox" name="re_category" value="cps_sitename">지역</label>
-						         <label><input type="checkbox" name="re_category" value="cps_btitle">제목</label>
-						         <label><input type="checkbox" name="re_category" value="cps_bcontent">내용</label>
-						         <span class="key-wrap"> 
-						            <input type="text" name="re_searchWord" id="re_searchWord" class="MS_input_txt">
-						            <button type="button" onclick="submitForm()" style="width: 28px; height: 28px; border: none; background: none;">
-						               <img src="https://image.makeshop.co.kr/makeshop/d3/basic_simple/bbs/btn_bbs_sch.gif" alt="검색" title="검색">
-						            </button>
-						         </span>
-						      </fieldset>
-						   </form>
+						  <form action="siteReview" name="re_search" method="get" id="searchForm">
+						    <fieldset>
+						      <legend>게시판 검색 폼</legend>
+						      <label><input type="checkbox" name="re_category" value="re_all" checked onclick="update_Check('re_all')">전체</label>
+						      <label><input type="checkbox" name="re_category" value="cps_sitename" onclick="update_Check('cps_sitename')">지역</label>
+						      <label><input type="checkbox" name="re_category" value="cps_btitle" onclick="update_Check('cps_btitle')">제목</label>
+						      <label><input type="checkbox" name="re_category" value="cps_bcontent" onclick="update_Check('cps_bcontent')">내용</label>
+						      <span class="key-wrap"> 
+						        <input type="text" name="re_searchWord" id="re_searchWord" class="MS_input_txt">
+						        <button type="button" onclick="submitForm()" style="width: 28px; height: 28px; border: none; background: none;">
+						          <img src="https://image.makeshop.co.kr/makeshop/d3/basic_simple/bbs/btn_bbs_sch.gif" alt="검색" title="검색">
+						        </button>
+						      </span>
+						    </fieldset>
+						  </form>
+						  <script>
+						    // JavaScript 코드
+						    function update_Check(clickedValue) {
+						      // 클릭한 체크박스의 값을 확인
+						      var clicked = clickedValue;
+						
+						      // 전체 체크박스가 클릭되었을 경우 다른 체크박스의 선택을 초기화
+						      if (clicked === 're_all') {
+						        var checkboxes = document.querySelectorAll('input[name="re_category"]');
+						        checkboxes.forEach(function(checkbox) {
+						          if (checkbox.value !== 're_all') {
+						            checkbox.checked = false;
+						          }
+						        });
+						      } else {
+						        // 다른 체크박스가 클릭되었을 경우 전체 체크박스의 선택을 해제
+						        var allCheckbox = document.querySelector('input[value="re_all"]');
+						        allCheckbox.checked = false;
+						      }
+						      
+						    }
+						  </script>
 						   <!-- .검색 폼 끝 -->
 						</div> <!-- bbs-sch -->
 								

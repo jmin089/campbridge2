@@ -31,7 +31,7 @@ table {
 	display: felx;
 }
 
-.searchTitle, .searchWord, .searchBtn {
+.searchTitle, .searchWord, .searchBtn, .category {
 	height: 50px;
 	border: 2px solid #009223;
 }

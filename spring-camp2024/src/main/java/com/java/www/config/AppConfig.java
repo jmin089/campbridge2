@@ -26,6 +26,7 @@ public class AppConfig {
 				"classpath:/mapper/**/*.xml"  //classpath는 src/main/resources
 				// **/*.xml - 모든폴더에 모든xml을 불러와라.
 				);
+		
 		sessionFactory.setMapperLocations(res);
 		
 		return sessionFactory.getObject();  //myBatis에 db+mapper정보가 들어가 있는 모든 객체

@@ -33,13 +33,13 @@
         });
     });
 
-		    if(${result}==1){
+		/*     if(${result}==1){
 		 	   alert("로그인이 되었습니다.");
 		 	   location.href="/";
 		    }else{
 		 	   alert("아이디 또는 패스워드가 일치하지 않습니다.");
 		 	   location.href="/my/login";
-		    }
+		    } */
 		    
 </script>
 
