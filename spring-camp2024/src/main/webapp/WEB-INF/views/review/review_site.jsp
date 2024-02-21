@@ -81,7 +81,7 @@
 						        <col width="13%">
 				   			</colgroup>
 						    <tr>
-						       <th style="text-align: left;"><strong>캠핑장 이름</strong></th>
+						       <th style="text-align: left;"><strong>글제목</strong></th>
 						       <th style="text-align: left;"><span>${map.c_redto.cps_btitle}</span></th>
 						       <th style="text-align: left;"><strong>DATE</strong></th>
 						       <th><fmt:formatDate value="${map.c_redto.cps_bdate}" pattern="yyyy-MM-dd"/></th>

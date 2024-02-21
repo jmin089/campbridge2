@@ -33,13 +33,13 @@
         });
     });
 
-		/*     if(${result}==1){
+		/*      if(${result}==1){
 		 	   alert("로그인이 되었습니다.");
 		 	   location.href="/";
 		    }else{
 		 	   alert("아이디 또는 패스워드가 일치하지 않습니다.");
 		 	   location.href="/my/login";
-		    } */
+		    }  */
 		    
 </script>
 
@@ -56,7 +56,6 @@
     white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
   }
 </style>
-	
 	
 	<body>
 	 <!-- ======= Header ======= -->
@@ -88,14 +87,14 @@
 		<div id="nav_bottom" class="nav_bottom d-flex">
 	      <nav id="navbar" class="navbar">
 	        <ul>
-	          <li class="dropdown"><a href="#">CampBridge 소개<i class="bi bi-chevron-down dropdown-indicator"></i></a>
+	          <li class="dropdown"><a href="/aboutCB">CampBridge 소개<i class="bi bi-chevron-down dropdown-indicator"></i></a>
 		          <ul>
 		              <li><a href="/aboutCB">CampBridge 소개</a></li>
 		              <li><a href="/developers">손발을 do it! 소개</a></li>
 		              <li><a href="/admin/adminPage">CampBridge 관리자</a></li>
 		          </ul>
 	          </li>
-	          <li class="dropdown"><a href="#">캠핑장 검색</a>
+	          <li class="dropdown"><a href="/search/campsearch">캠핑장 검색</a>
 	          	<ul>
 		            <li><a href="/search/campsearch">캠핑장 검색</a></li>
 		            <li><a href="/search/mapsearch">지도 검색</a></li>
@@ -103,7 +102,7 @@
 		        </ul>
 	          </li>
 	          <li><a href="/search/tSearch">테마검색</a></li>
-	          <li class="dropdown"><a href="#"><span>커뮤니티</span></a>
+	          <li class="dropdown"><a href="/community/pList"><span>커뮤니티</span></a>
 	            <ul>
 	              <li><a href="/community/pList">파티원모집</a></li>
 		          <li><a href="/community/tList">캠핑꿀팁(Tip)</a></li>
@@ -111,23 +110,51 @@
 	              <li><a href="/community/fList">자유게시판</a></li>
 	            </ul>
 	          </li>
-	          <li class="dropdown"><a href="#">리뷰</a>
+	          <li class="dropdown"><a href="/review/siteReview">리뷰</a>
 		          <ul>
 		              <li><a href="/review/siteReview">캠핑장 리뷰</a></li>
 		              <li><a href="/review/equipReview">캠핑용품 리뷰</i></a></li>
 		          </ul>
 	          </li>
-	          <li><a href="#contact">픽업장소</a></li>
+	          <li><a href="/#contact">픽업장소</a></li>
 	        </ul>
-	      </nav><!-- .navbar -->
-			<div id="search">
+	      </nav>
+	      <!-- .navbar -->
+			<!-- <div id="search">
 			<input name="input_search" type="text" class="input_search" placeholder="검색어를 입력하세요.">
 			<input type="button" value="검색" class="button_search">
-		  	</div>
-		
-	
-	
-	    </div>
+		  	</div> -->
+		  	
+		  		<!-- 헤더 상단 검색파트 부분 추가  -->
+			<script>
+				$(function(){
+				    $(".button_search").click(function(){
+				      if($("#input_search").val().length < 1){
+				        alert("검색어를 입력하셔야 검색이 가능합니다.");
+				        $("#input_search").focus();	  
+				        return false; 
+				      }
+				      alert("입력하신 검색어로 검색합니다.")
+				      searchInputFrm.submit();
+				    });
+				  }); 
+
+				</script>
+				<!-- 검색 시 /search/searchList로 폼형태로 보냄 -->
+			  	   <div id="search">
+				  	   <form action="/search/searchList" method="get" name="searchInputFrm">
+					    	<input name="input_search" id="input_search" type="text" class="input_search" placeholder="검색어를 입력하세요">
+							    <select name="category" id="category" style="position: relative; right: 20px; 
+							      width: 20px; height: 30px;border: white; border-radius: 10px;">
+						           <option value="all">전체</option>
+							       <option value="btitle">제목</option>
+							       <option value="bcontent">내용</option>
+							       <option value="id">작성자</option>
+						        </select>
+					    	<input type="button" value="검색" class="button_search">
+						</form>
+					</div>
+	   		 </div>
 	    </div>
 	  </header><!-- End Header -->
 	</body>

@@ -10,6 +10,10 @@ import com.java.www.dto.TBoardDto;
 
 @Mapper
 public interface TBoardMapper {
+	
+	//꿀팁게시판(메인용)
+	ArrayList<TBoardDto> TSelectAll();
+	
 	//게시글 전체 가져오기
 	ArrayList<TBoardDto> tb_selectAll(int startRow, int endRow, String searchTitle, String searchWord);
 	//검색된 게시글 가져오기
