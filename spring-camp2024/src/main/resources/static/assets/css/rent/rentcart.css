@@ -264,3 +264,5 @@ section {margin:150px 50px; text-align:center;}
 .mainBtn:hover {background-color: #45a049;}
 .cp_CartBtn {margin-bottom: 50px;  background-color: #009223;  color: #fff; padding: 10px 15px; font-size: 16px;  border: none;  border-radius: 5px;  cursor: pointer;  transition: background-color 0.3s;}
 .cp_CartBtn:hover {background-color: #45a049;}
+.cpRent_v {margin-bottom: 50px;  background-color: #009223;  color: #fff; padding: 10px 15px; font-size: 16px;  border: none;  border-radius: 5px;  cursor: pointer;  transition: background-color 0.3s;}
+.cpRent_v:hover {background-color: #45a049;}

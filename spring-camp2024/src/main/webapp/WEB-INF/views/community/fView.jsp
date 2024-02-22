@@ -149,7 +149,7 @@
 		    <!-- 댓글보기-->
 		    <table style="margin-top: 70px;">
 		    	<tr>
-		     		<td style="font-weight: 700"><strong>댓 글|</strong>&nbsp;&nbsp;총<strong style="color: #009223">&nbsp;${map.fCmmtlist.size() }</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
+		     		<td style="font-weight: 700"><strong>댓 글|</strong>&nbsp;&nbsp;총<strong style="color: #009223" class="f_count">&nbsp;${map.fCmmtlist.size() }</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
 		    	</tr>
 		    	<tbody id="replyBox">
 				    <c:forEach var="fCommentList" items="${map.fCmmtlist }">

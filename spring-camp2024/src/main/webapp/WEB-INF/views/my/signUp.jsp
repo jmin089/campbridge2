@@ -54,8 +54,7 @@
 				<fieldset class="fieldset_class">
 					<dl id="join_picture_dl">
 						<dt>
-							<div></div> <!-- 필수항목 -->
-							<label for="name">프로필 사진</label>
+							<label for="profile">프로필 사진</label>
 						</dt>
 						<dd class="photoBoxMI">
 							<div class="photoMI"><img id="previewImage" style="width:100%;"></div>
@@ -111,7 +110,7 @@
 						</dt>
 						<dd>
 							<input type="text" id="nickname" name="nickname" required/>
-							<span>5글자까지만 입력 가능합니다.</span>
+							<span>최대 다섯글자까지만 입력 가능합니다.</span>
 						</dd>
 					</dl>
 					<dl id="join_mail_dl">
@@ -184,7 +183,7 @@
 					<dl id="join_interests_dl">
 						<dt>
 							<div></div> <!-- 필수항목 -->
-							<label id="genderLb" >나의 지역</label>
+							<label id="genderLb" >관심 지역</label>
 						</dt>
 						<dd>
 							<ul>

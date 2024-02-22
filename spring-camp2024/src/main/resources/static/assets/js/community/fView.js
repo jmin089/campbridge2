@@ -24,6 +24,7 @@ $(function() {
 	$("#replybtn").click(function() {
 		let f_cpw = $("#replyIPw").val();
 		let f_ccontent = $("#replyCont").val();
+		let f_count = Number($(".f_count").text());
 
 		if (id == null) {
 			alert("※ 로그인 상태에서만 댓글이 등록됩니다.");
@@ -57,6 +58,7 @@ $(function() {
 				hdata += '</td>';
 				hdata += '</tr>';
 				$("#replyBox").prepend(hdata);
+				$(".f_count").text(f_count + 1);
 				$("#replyCont").val("");
 				$("#replyIPw").val("");
 			}, //success
@@ -70,6 +72,7 @@ $(function() {
 	$(document).on("click", ".rDelBtn", function() {
 		//alert("부모의 부모의 부모 id(f_cno) : "+$(this).closest("tr").attr("id")); //=//alert("부모의 부모의 부모 id(f_cno) : "+$(this).parent().parent().parent().attr("id"));
 		let f_cno = $(this).closest("tr").attr("id");
+		let f_count = Number($(".f_count").text());
 		//let id=$(this).parent().parent().find(".f_cid").text();
 
 		if (confirm("댓글을 삭제 하시겠습니까?")) {
@@ -81,13 +84,14 @@ $(function() {
 				dataType: "text", //data를 받는 타입
 				success: function(data) {
 					$("#" + f_cno).remove();//삭제
-					
+					$(".f_count").text(f_count - 1);
 				}, //success
 				error() {
 					alert("실패");
 				}//error
 			});//ajax(댓글삭제)
 			alert("댓글을 삭제되었습니다.");
+			
 		}//if(댓글 삭제)
 	});//(댓글삭제)
 

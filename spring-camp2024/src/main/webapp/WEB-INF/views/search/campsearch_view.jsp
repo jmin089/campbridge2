@@ -29,12 +29,15 @@
 	    <link href="/assets/css/main2.css" rel="stylesheet">
 	    <link href="/assets/css/header.css" rel="stylesheet">
 		<link href="/assets/css/search/campsearch.css" rel="stylesheet">
+		
+		
 	    
 	    <style>
         
   		</style>
   		
-
+  		<script src="../assets/js/search/campsearch.js"></script>
+  		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d5d12845d8d8c6270f391d3f37e0eb7d"></script>
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -52,50 +55,83 @@
 		<div class="camp_info_box">
 		<!-- 이미지 -->
 		<div class="img_b">
-			<img src="${_firstImageUrl }" />
+			<img src="${map.gcdto.firstImageUrl}" alt="메인 이미지" />
 		</div>
 		<!-- 이미지 옆 표 -->
 		<div class="cont_tb">
 			<table class="table">
 				<colgroup>
-					<col style="width: 30%;" />
-					<col style="width: 70%;" />
+					<col style="width: 35%;" />
+					<col style="width: 65%;" />
 				</colgroup>
 				<tbody>
-					<tr>
-						<th scope="col">주소</th>
-						  <td>${_addr1 }</td>
-					</tr>
-					<tr class="camp_call_pcVer">
-						<th scope="col">문의처</th>
-						<td>${_tel ? _tel : "정보없음"}</td>
-					</tr>
-					<tr>
-						<th scope="col">캠핑장 환경</th>
-						<td>${_facltDivNm }</td>
-					</tr>
-					<tr>
-						<th scope="col">캠핑장 유형</th>
-						<td>${_induty }</td>
-					</tr>
-					<tr>
-						<th scope="col">운영기간</th>
-						<td>${_tourEraCl ? _tourEraCl : "정보없음"}<td>
-					</tr>
-					<tr>
-						<th scope="col">운영일</th>
-						<td>${_operDeCl }</td>
-					</tr>
-					<tr>
-						<th scope="col">홈페이지</th>
-						<td><a href="${_homepage }" target="_BLANK" title="새창열림"><strong>${_homepage }</strong></a>
-						<i class="ico_link"><span class="skip"></span></i>
-						</td>
-					</tr>
-					<tr>
-						<th scope="col">주변이용가능시설</th>
-						<td>${_sbrsEtc ? _sbrsEtc : "정보없음"}</td>
-					</tr>
+					
+					<c:if test="${not empty map.gcdto.facltNm}">
+						<tr>
+							<th scope="col">캠핑장명</th>
+							<td>${map.gcdto.facltNm}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.addr1}">
+						<tr>
+							<th scope="col">주소</th>
+							<td>${map.gcdto.addr1}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.tel}">
+						<tr>
+							<th scope="col">문의처</th>
+							<td>${map.gcdto.tel}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.lctCl}">
+						<tr>
+							<th scope="col">캠핑장 환경</th>
+							<td>${map.gcdto.lctCl}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.induty}">
+						<tr>
+							<th scope="col">캠핑장 유형</th>
+							<td>${map.gcdto.induty}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.operPdCl}">
+						<tr>
+							<th scope="col">운영기간</th>
+							<td>${map.gcdto.operPdCl}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.operDeCl}">
+						<tr>
+							<th scope="col">운영일</th>
+							<td>${map.gcdto.operDeCl}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.homepage}">
+						<tr>
+							<th scope="col">홈페이지</th>
+							<td><a href="${map.gcdto.homepage}" target="_BLANK" title="새창열림"><strong>${map.gcdto.homepage}</strong></a>
+							<i class="ico_link"><span class="skip"></span></i>
+							</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.posblFcltyCl}">
+						<tr>
+							<th scope="col">주변이용가능시설</th>
+							<td>${map.gcdto.posblFcltyCl}</td>
+						</tr>
+					</c:if>
+					
+					
 				</tbody>
 			</table>
 		</div>
@@ -105,119 +141,108 @@
 	<div class="tabmenu_ti">
 	    <input type="radio" name="tabmenu" id="tab01" checked>
 	    <label for="tab01">캠핑장 소개</label>
-	    <input type="radio" name="tabmenu" id="tab02">
-	    <label for="tab02">이용안내</label>
 	    <input type="radio" name="tabmenu" id="tab03">
 	    <label for="tab03">위치/주변정보</label>
-	    <input type="radio" name="tabmenu" id="tab04">
-	    <label for="tab04">캠핑&여행후기</label>
+	    
 	    <div class="conbox con1">
-	    	<img style="width:400px;" src="${_firstImageUrl }">
-	    	<div>
-	    	<span>${_intro ? _intro : "정보없음"}</span>
-	    	</div>
+	    	<c:if test="${map.gcdto.intro!=null}">
+                <span>${map.gcdto.intro}</span>
+            </c:if>
+            <c:if test="${map.gcdto.intro==null}">
+                <p id="pnull">(등록된 소개글이 없습니다)</p>
+            </c:if>
+			
 	    </div>
-	    <div class="conbox con2">${_allar ? _allar : "정보없음"}</div>
-	    <div class="conbox con3">${_direction ? _direction : "정보없음"}</div>
-	    <div class="conbox con4">${_tooltip ? _tooltip : "정보없음"}</div>
+	    <div class="conbox con3">위치 및 주변 정보 <br> ${map.gcdto.tooltip} <br><br><br> 
+	    	<div id="map" style="width:1080px;height:500px;position: relative;"></div>
+	    </div>
+	    
+	   
 	</div>
 								
 	<h3 class="icon_h3">캠핑장 시설정보</h3>
 		<div class="camp_item_g">
 			<ul>
-				<li><i class="ico_volt"><span>${_posblFcltyCl }</span></i></li>
+				<li><i class="ico_volt"><span>${map.gcdto.sbrsCl}</span></i></li>
+				<li><i class="ico_wifi"><span>${map.gcdto.sbrsEtc}</span></i></li>
+				
 			</ul>
 		</div>
-
 		
 	<h3 class="icon_h3">기타 주요시설</h3>
 	<section id="table_type03">
 		<div class="table_w">
 			<table class="table_t4 camp_etc_tb">
 				<tbody class="t_c">
-					<tr>
+				
+					<c:if test="${not empty map.gcdto.induty}">
+						<tr>
 						<th scope="col">주요시설</th>
-						<td>
-							<ul class="table_ul05">
-								<li>${_induty }</li>
-							 <%-- <li>${_gnrlSiteCo}, ${_autoSiteCo}, ${_glampSiteCo}, ${_caravSiteCo}, ${_indvdlCaravSiteCo}</li> --%>
-							</ul>
-						</td>
+						<td class="etc_type">${map.gcdto.induty}</td>
 					</tr>
+					</c:if>
+					
 					<tr>
 						<th scope="col">기타 정보</th>
 						<td>
 							<ul class="table_ul05">
-								<li>${_sbrsCl}</li>
+								<li id="tdcss">개인 트레일러 입장 (${map.gcdto.trlerAcmpnyAt eq 'Y' ? '가능' : '불가능'})</li>
+								<li id="tdcss">개인 캠핑카 입장 (${map.gcdto.caravAcmpnyAt eq 'Y' ? '가능' : '불가능'})</li>
+								<li id="tdcss">반려동물 동반 ${map.gcdto.animalCmgCl}</li>
 							</ul>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
+				(※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
 						</td>
 					</tr>
-					<tr>
+					
+					<c:if test="${not empty map.gcdto.sbrsEtc}">
+						<tr>
 						<th scope="col">기타 부대시설</th>
 						<td>
 							<ul class="table_ul05">
-								<li>${_sbrsEtc ? _sbrsEtc : "정보없음"}</li>
+								<li id="tdcss">${map.gcdto.sbrsEtc}</li>
+								
 							</ul>
+						
 						</td>
 					</tr>
+					</c:if>
+					
+					
 					<tr>
-						<th scope="col">사이트 간격</th>
+						<th scope="col">바닥형태 (수량)</th>
 						<td>
 							<ul class="table_ul05">
-								<li>${_sitedStnc}</li>
+								<li id="tdcss">잔디 (${map.gcdto.siteBottomCl1})</li>
+								<li id="tdcss">파쇄석 (${map.gcdto.siteBottomCl2})</li>
+								<li id="tdcss">테크 (${map.gcdto.siteBottomCl3})</li>
+								<li id="tdcss">자갈 (${map.gcdto.siteBottomCl4})</li>
+								<li id="tdcss">맨흙 (${map.gcdto.siteBottomCl5})</li>
 							</ul>
 						</td>
 					</tr>
-					<tr>
-						<th scope="col">바닥형태 (단위:면)</th>
-						<td>
-							<ul class="table_ul05">
-							<li>잔디: ${_siteBottomCl1 }</li>
-							<li>파쇄석: ${_siteBottomCl2 }</li>
-							<li>테크: ${_siteBottomCl3 }</li>
-							<li>자갈: ${_siteBottomCl4 }</li>
-							<li>맨흙: ${_siteBottomCl5}</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="col">사이트 크기</th>
-						<td>
-							<ul class="table_ul05">
-							<li>${_siteMg1Width} * ${_siteMg1Vrticl} = ${_siteMg1Co}</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
+					
+					
+					<c:if test="${not empty map.gcdto.eqpmnLendCl}">
+						<tr>
 						<th scope="col">캠핑장비대여</th>
-						<td>
-							<ul class="table_ul05">
-								<li>${_eqpmnLendCl ? _eqpmnLendCl : "정보없음"}</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
+						<td class="etc_type">${map.gcdto.eqpmnLendCl}</td>
+						</tr>
+					</c:if>
+					
+					<c:if test="${not empty map.gcdto.brazierCl}">
+						<tr>
 						<th class="col">화로대</th>
-						<td class="etc_type">${_brazierCl }</td>
+						<td class="etc_type">${map.gcdto.brazierCl}</td>
 					</tr>
-					<tr>
-						<th scope="col">안전시설현황</th>
-						<td>
-							<ul class="table_ul05">
-								<li>텐트: ${_extshrCo  }</li>
-								<li>릴선: ${_frprvtWrppCo  }</li>
-								<li>소화기: ${_frprvtSandCo  }</li>
-								<li>방화수: ${_fireSensorCo }</li>
-							</ul>
-						</td>
-					</tr>
+					</c:if>
+					
+					
 				</tbody>
 			</table>
 		</div>
 		<p class="camp_intro_txt">
 		<span class="info_notice">
-			&nbsp;* 고캠핑에 등록된 정보는 현장상황과 다소 다를 수 있으니 <span class="info_f_red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리 확인하시기 바랍니다.
+			&nbsp;* CampBridge에 등록된 정보는 현장상황과 다소 다를 수 있으니 <span class="info_f_red">반려동물 동반 여부, 부가 시설물, 추가차량</span> 등 원활한 캠핑을 위해 꼭 필요한 사항은 해당 캠핑장에 미리 확인하시기 바랍니다.
 		</span> 
 		</p>
 	</section>

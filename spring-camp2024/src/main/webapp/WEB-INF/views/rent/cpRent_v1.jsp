@@ -46,7 +46,7 @@
 		</div>
 		
 		  <div id="packV">
-		  <a href="cpRent"><button>뒤로가기</button></a>
+		  <a href="cpRent"><button class="cpRent_v">뒤로가기</button></a>
 		  </div>
         
         

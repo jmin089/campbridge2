@@ -74,7 +74,6 @@
 			    modal.style.display = "none";
 			  }
 			}
-			
 			</script>
 		   
 			<!-- 캠핑용품대여 -->
@@ -115,7 +114,6 @@
         </div>
         <script type="text/javascript">
 	    $(document).on("click", ".cp_CartBtn", function() {
-	        // 로그인을 해야만 다음으로 진행가능하게 구현
 	        let session_id = "${session_id}";
 	        if (session_id === null || session_id === "") {
 	            alert("로그인을 하여야 다음으로 진행할 수 있습니다. 로그인 해주세요!");
@@ -132,11 +130,10 @@
 	        // 두개의 조건이 맞으면 넘어감!
 	        cp_CartFrm.submit();
 	        
-	     // 선택된 체크박스 체크 해제
+	     	// 선택된 체크박스 체크 해제
 	        checkboxes.forEach(function (checkbox) {
 	            checkbox.checked = false;
 	        });
-
 	    });
 		</script>
         <!-- 체크박스 -->

@@ -7,6 +7,8 @@
 		 let chkid="";
 		 let chkKeyUp=0;
 		 
+		 
+		 
 		 //가입하기 버튼 클릭
 		 $("#savebtn").click(function(){
 			 
@@ -14,7 +16,7 @@
 			 let idpattern = /^[a-zA-Z]{1}[a-zA-Z0-9]{3,7}$/;
 			 let pwpattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@$%^&().,]).{5,11}$/;
 			 let namepattern = /^[ㄱ-ㅎ가-힣]{1,}$/;
-			 let nicknamepattern = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{0,4}$/;
+			 let nicknamepattern = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{0,7}$/;
 			 
 			 let id = $("#id").val();
 			 let name = $("#name").val();
@@ -51,7 +53,7 @@
 			}
 			
 			 if(!nicknamepattern.test(nickname)){
-				 alert("닉네임은 한글,영문,숫자를 포함한 5자까지만 사용가능합니다.");
+				 alert("닉네임은 한글,영문,숫자를 포함한 8자까지만 사용가능합니다.");
 				 return false;
 			 }
 			 
@@ -70,13 +72,13 @@
 			}
 			
 			 if($("#address2").val().length<1){
-					 alert("상세주소를 입력하셔야 합니다.");
+					 alert("주소를 입력하셔야 합니다.");
 					 $("#address2").focus();
 					 return false;
 			}
 			
 			 if($("input[name='gender']:checked").length!=1){
-					 alert("성별체크를 하셔야합니다.");
+					 alert("성별체크를 하셔야 합니다.");
 					 return false;
 			 }
 			
@@ -97,12 +99,12 @@
 			}
 			
 			
-			if ($("input[name='searchDo']:checked").length !== 0 && $("input[name='searchDo']:checked").length !== 1) {
-			    alert("지역은 1개만 설정할 수 있습니다.");
+			if ($("input[name='local']:checked").length<1) {
+			    alert("지역 선택하셔야 합니다.");
 			    return false;
 			}
-			 
-			 
+			
+			
 			 userSignupFrm.submit();
 		 });//savebtn
 		 
@@ -186,31 +188,48 @@
 	 });//j
 		 
 		 
-		 //프로필 사진
-		 document.addEventListener('DOMContentLoaded', function() {
-            var fileInput = document.getElementById('m_img');
-            var preview = document.getElementById('previewImage');
-
-            fileInput.addEventListener('change', function(event) {
-                previewImage(event);
-            });
-
-            function previewImage(event) {
-                var input = event.target;
-                var reader = new FileReader();
-
-                reader.onload = function(){
-                    preview.src = reader.result;
-                };
-
-                // Read the image file as a data URL
-                if (input.files && input.files[0]) {
-                    reader.readAsDataURL(input.files[0]);
-                }
-               }
-       		 });//프로필 사진
+		 //프로필 사진 
+	       $(document).ready(function() {
+			    // 파일이 변경되었을 때 이벤트 핸들러 추가
+			    $('#m_img').on('change', function(event) {
+			        var input = event.target;
+			        if (input.files && input.files[0]) {
+			            // 파일이 선택되었을 때
+			            var reader = new FileReader();
+			            reader.onload = function(e) {
+			                $('#previewImage').attr('src', e.target.result);
+			            }
+			            reader.readAsDataURL(input.files[0]);
+			        } else {
+			            // 파일이 선택되지 않았을 때
+			            $('#previewImage').attr('src', '../assets/img/login/profile.png'); // 대체할 이미지 경로로 변경
+			        }
+			    });
+			
+			    // 페이지 로드 시에도 초기 대체 이미지 설정
+			    if (!$('#m_img').val()) {
+			        $('#previewImage').attr('src', '../assets/img/login/profile.png'); // 대체할 이미지 경로로 변경
+			    }
+			});//프로필 사진
+       	
 		
 		 
 		 
 		 
 		 
+		 
+		 //지역 체크박스
+		/* var checkboxes = document.querySelectorAll('input[type="checkbox"][name="local"]');
+			checkboxes.forEach(function(checkbox) {
+			    checkbox.addEventListener('click', function(event) {
+			        // 클릭된 체크박스가 선택된 경우에만 다른 모든 체크박스의 선택을 해제합니다.
+			        if (event.target.checked) {
+			            checkboxes.forEach(function(otherCheckbox) {
+			                // 현재 체크박스가 아닌 다른 체크박스의 선택을 해제합니다.
+			                if (otherCheckbox !== event.target) {
+			                    otherCheckbox.checked = false;
+			                }
+			            });
+			        }
+			    });
+			});//지역 체크박스*/

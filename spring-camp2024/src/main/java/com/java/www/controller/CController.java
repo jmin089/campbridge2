@@ -409,7 +409,7 @@ public class CController {
 		return result;
 	}// pJoinDelete(p_jcno)
 
-	// 2. 자유게시글 -하단댓글 1개 수정저장
+	// 2. 파티원 모집 -하단댓글 1개 수정저장
 	@PostMapping("pCommentUpdate")
 	@ResponseBody
 	public PCommentDto pCommentUpdate(PCommentDto pcdto) {

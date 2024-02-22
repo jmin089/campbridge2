@@ -93,7 +93,7 @@ public class User_campServiceImpl implements User_campService {
 					+ "<table width='700' cellpadding='0' cellspacing='0' align='center'>\r\n"
 					+ "<tr>\r\n"
 					+ "	<td style='width:700px;height:100px;padding-top:30px;margin:0;vertical-align:top;font-size:0;line-height:0;'>\r\n"
-					+ "		<img style='display:block; margin: 0 auto;' src='https://i.ibb.co/m935WZP/logo.png' alt='CampBridge' />					\r\n"
+					+ "		<img style='display:block; margin: 0 auto;' src='http://localhost:8000/assets/img/logo/cplogo.png' alt='CampBridge' />					\r\n"
 					+ "	</td>\r\n"
 					+ "</tr>\r\n"
 					+ "<tr>\r\n"

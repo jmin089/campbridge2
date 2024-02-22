@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,205 +32,101 @@
 	    <link href="/assets/css/main2.css" rel="stylesheet">
 	    <link href="/assets/css/header.css" rel="stylesheet">
 		<link href="/assets/css/search/tsearch.css" rel="stylesheet">
+		<!-- javascript -->
+		<script src="../assets/js/search/tSearch.js"></script>
 	    
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
 	<%@include file="../include/header.jsp" %>
 	<!-- End Header -->
-			<section class="tSearch">
-			
-			<!-- 체크박스 -->
+		<section class="tSearch">
+		<!-- 체크박스 -->
 		  <div class="t_check">
 		  		<img src="../assets/img/tsearch/thema_icon.png">
-		 		<h1>테마별로 떠나는 캠프</h2>
+		 		<h1>테마별로 떠나는 캠프</h1>
+		  	
 		  		<div class="thema">
 				 <ul>
 					 <li>
-						 <input type="checkbox" id="thema1" name="thema" value="일출명소" onClick="clkOftenAddr(this);"/> 
+						 <input type="checkbox" id="thema1" name="themaEnvrnCl" value="일출명소" /> 
 						 <label for="thema1">일출명소</label> 
 					 </li>
 			 		<li> 
-				 		<input type="checkbox" id="thema2" name="thema" value="일몰명소" onClick="clkOftenAddr(this);"/> 
+				 		<input type="checkbox" id="thema2" name="themaEnvrnCl" value="일몰명소" />
 				 		<label for="thema2">일몰명소</label> 
 			 		</li>
 					<li> 
-						<input type="checkbox" id="thema4" name="thema" value="항공레저" onClick="clkOftenAddr(this);"/> 
-						<label for="thema4">항공레저</label> 
+						<input type="checkbox" id="thema3" name="themaEnvrnCl" value="항공레저" /> 
+						<label for="thema3">항공레저</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema4" name="thema" value="스키" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema4" name="themaEnvrnCl" value="스키" /> 
 						<label for="thema4">스키</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema5" name="thema" value="낚시" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema5" name="themaEnvrnCl" value="낚시" /> 
 						<label for="thema5">낚시</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema6" name="thema" value="액티비티" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema6" name="themaEnvrnCl" value="액티비티" /> 
 						<label for="thema6">액티비티</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema7" name="thema" value="봄꽃여행" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema7" name="themaEnvrnCl" value="봄꽃여행" /> 
 						<label for="thema7">봄꽃여행</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema11" name="thema" value="걷기길" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema11" name="themaEnvrnCl" value="걷기길"/> 
 						<label for="thema11">걷기길</label> 
 					</li>
 				</ul>
 				<ul>	
 					<li> 
-						<input type="checkbox" id="thema8" name="thema" value="여름물놀이" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema8" name="themaEnvrnCl" value="여름물놀이" /> 
 						<label for="thema8">여름물놀이</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema9" name="thema" value="가을단풍명소" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema9" name="themaEnvrnCl" value="가을단풍명소"/> 
 						<label for="thema9">가을단풍명소</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema10" name="thema" value="겨울눈꽃명소" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema10" name="themaEnvrnCl" value="겨울눈꽃명소"/> 
 						<label for="thema10">겨울눈꽃명소</label> 
 					</li>
-		 		</ul></div>
+		 		</ul>
+		 		</div>
 		  </div>
-		  
 		  <div id="s_Btn">
-		  <a href="#"><button>검색하기</button></a>
+		 	<button type="button">검색하기</button>
 		  </div>
-		  
-		  
 		  <div class="t_list">
             <ul>
-                <li class="item item1">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item2">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item3">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item4">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item5">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item6">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item7">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item8">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item9">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item10">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item11">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item12">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
+                <li class="item" id="cont_item">
+                <c:forEach var="tsdto" items="${map.list}">
+                	<div class="t_contbox">
+	                    <div class="image"><img class="image" src="${tsdto.firstImageUrl}"></div>
+	                    <div class="cont">
+	                        <strong>${tsdto.facltNm}</strong>
+	                        <p>${tsdto.addr1}</p>
+	                        <c:if test="${empty tsdto.tel}">
+		                        <p>등록된 전화 번호가 없습니다.</p>
+	                        </c:if>
+	                        <c:if test="${not empty tsdto.tel}">
+		                        <p>${tsdto.tel}</p>
+	                        </c:if>
+	                        <p>${tsdto.lineIntro}</p>
+	                        <a href="tSearch_view?contentId=${tsdto.contentId}">바로가기</a>
+	                    </div>
+                	</div>
+                </c:forEach>
                 </li>
             </ul>
         </div>
-		
-		
 		<div id="p_Btn">
-		  <a href="#"><button>더보기</button></a>
-		  </div>
-					
-			</section>
+		  <button type="button" class="tsMoreBtn">더보기</button>
+		</div>
+	</section>
 		
 		<!-- ======= Footer ======= -->
 	  	<%@include file="../include/footer.jsp" %>

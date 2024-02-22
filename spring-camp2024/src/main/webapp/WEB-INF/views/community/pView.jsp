@@ -161,8 +161,12 @@
 					<td><strong style="color: navy">댓글 작성자</strong> | <strong style="color: #009223;" class="p_cid">${pCommentList.id }</strong>&nbsp;&nbsp;<span class="p_cdate"><fmt:formatDate value="${pCommentList.p_cdate }" pattern="YYYY-MM-dd HH:mm:ss"/> </span>
 					<li id="replyTxt">&nbsp;&nbsp;${pCommentList.p_ccontent }</li>
 					<li id="replyBtn">
+					<c:if test="${session_id==pCommentList.id or session_id=='admin'}">
 						<button class="rDelBtn">삭제</button>
+					</c:if>
+					<c:if test="${session_id==pCommentList.id}">
 						<button class="rUBtn">수정</button>
+					</c:if>
 					</li>
 					</td>			
 				  </tr>

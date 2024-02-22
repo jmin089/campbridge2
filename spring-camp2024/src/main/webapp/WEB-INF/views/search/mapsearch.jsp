@@ -42,7 +42,7 @@
 <!-- 캠핑장 검색 -->
 <img src="../assets/img/campsearch/free_icon_map.png">
 <h1>지도 검색</h1>
-<button id="map_searchBtn"><a href="/search/campsearch">캠핑장검색으로</a></button>
+<button id="map_searchBtn"><a href="campsearch">캠핑장검색으로</a></button>
 
 <div class="map_wrap">
 <div id="map_search"></div>
@@ -280,7 +280,7 @@ function searchPlaces() {
 	    }
    ]; 
     console.log(data_test);
-    alert("검색시작");
+    //alert("검색시작");
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     //ps.keywordSearch( keyword, placesSearchCB); 
     placesSearchCB(data_test); //status == 200삭제 
