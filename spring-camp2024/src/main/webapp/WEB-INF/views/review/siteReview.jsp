@@ -134,7 +134,6 @@
 										<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i><fmt:formatDate value="${redto.cps_bdate}" pattern="yyyy-MM-dd"/></span>
 										<div class="heartwrap">
 											 <span class="reviewhit">${redto.cps_bhit}</span>
-											 <img src="https://www.5gcamp.com/modules/usemarket/theme/_pc/default/image/heart-o.svg" alt="" width="20" class="heart1">
 										</div>
 										<a href="review_site?cps_bno=${redto.cps_bno}">바로가기</a>
 									</div>

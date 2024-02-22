@@ -91,7 +91,6 @@
 		          <ul>
 		              <li><a href="/aboutCB">CampBridge 소개</a></li>
 		              <li><a href="/developers">손발을 do it! 소개</a></li>
-		              <li><a href="/admin/adminPage">CampBridge 관리자</a></li>
 		          </ul>
 	          </li>
 	          <li class="dropdown"><a href="/search/campsearch">캠핑장 검색</a>
@@ -106,7 +105,7 @@
 	            <ul>
 	              <li><a href="/community/pList">파티원모집</a></li>
 		          <li><a href="/community/tList">캠핑꿀팁(Tip)</a></li>
-	              <li><a href="/used/used">중고거래&캠핑장 양도</a></li>
+	              <li><a href="/used/used_ca1">중고거래&캠핑장 양도</a></li>
 	              <li><a href="/community/fList">자유게시판</a></li>
 	            </ul>
 	          </li>
