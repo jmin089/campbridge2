@@ -194,7 +194,8 @@
 				                    <li class="review_replyTxt">${Cps_comment.cps_ccontent}</li>
 				                    <c:if test="${session_id == Cps_comment.id}">
 				                    <li id="replyBtn">
-				                        <button type="button" class="rDelBtn">삭제</button>&nbsp;
+				                        <button type="button" class="rDelBtn">삭제</button>&nbsp
+				                        <!-- <div class="rDelBtn">삭제</div>&nbsp -->
 				                        <button type="button" class="rUBtn">수정</button>
 				                    </li>
 				                    </c:if>
@@ -241,6 +242,7 @@
 						
 						</div> <!-- bbs-table-view 본문 끝 -->
 						</form>
+						
 					</div> <!-- .page-body -->
 				</div> <!-- #bbsData -->
 			</div> <!-- #content -->

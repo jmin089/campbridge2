@@ -302,7 +302,7 @@ function searchPlaces() {
 	    // 새로운 form 요소를 생성합니다.
 	    var form = document.createElement('form');
 	    form.setAttribute('method', 'post'); // 혹은 'get'에 따라 전송 방식을 설정합니다.
-	    form.setAttribute('action', '/search/mapsearch_view'); // 해당 form이 전송될 URL을 설정합니다.
+	    form.setAttribute('action', '/search/mapsearch_view2'); // 해당 form이 전송될 URL을 설정합니다.
 	    
 	    // hidden input 요소를 생성하고 정보를 추가합니다.
 	    addHiddenInput(form, 'id', places.id);
@@ -441,7 +441,7 @@ function getListItem(index, places) {
     // 클릭 이벤트 핸들러 
      el.addEventListener('click', function() {
         // 해당 항목의 id를 이용하여 URL을 생성합니다.
-        var placeUrl = "/search/mapsearch_view?id=" + places.id;
+        var placeUrl = "/search/mapsearch_view2?id=" + places.id;
         console.log("Clicked on place: " + places.place_name);
         console.log("Navigating to URL: " + placeUrl);
         // 해당 URL로 이동합니다.

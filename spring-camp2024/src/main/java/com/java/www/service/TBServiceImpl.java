@@ -76,6 +76,8 @@ public class TBServiceImpl implements TBService{
 		map.put("page", page);
 		map.put("countAll", countAll);
 		map.put("maxPage", maxPage);
+		map.put("searchTitle", searchTitle);
+		map.put("searchWord", searchWord);
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
 		return map;

@@ -143,7 +143,7 @@ background: #009223; color: #fff; font-weight: 700;
         </div>
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
         <div id="search_go_top">
-        <p class="search_go"><a href="#">더보기</a></p>  
+        <p class="search_go"><a href="/search/campsearch">더보기</a></p>  
         </div>
           <div class="swiper-wrapper" id="content">
           <br>
@@ -275,8 +275,9 @@ background: #009223; color: #fff; font-weight: 700;
 	                        console.log("주소 : " + _addr1[i]);
 	                        console.log("소개 : " + _lineIntro[i]);
 	                       	 //폼 형태로 fc컨트롤러 searchCamp 와 campsearch_view 에 공공데이터 정보를 보냄
-	                         hdata += '<form action="/campsearch_view" method="get" >'
+	                         hdata += '<form action="/campsearch_view2" method="get" >'
                          	 hdata += '<input type="hidden" name="_firstImageUrl" value="'+_firstImageUrl[i]+'" >' 
+                         	 hdata += '<input type="hidden" name="_facltNm" value="'+_facltNm[i]+'" >' 
                              hdata += '<input type="hidden" name="_addr1" value="'+_addr1[i]+'" >' 
                              hdata += '<input type="hidden" name="_tel" value="'+_tel[i]+'" >' 
                              hdata += '<input type="hidden" name="_lctCl " value="'+_lctCl[i]+'" >' 
@@ -722,82 +723,46 @@ background: #009223; color: #fff; font-weight: 700;
       <div class="container" data-aos="fade-up">
       
 	      <div class="main-visual-news-section first">
-	      	
 	      	<h3 class="main-visual-news-title notice">캠핑꿀팁(Tip)</h3>
 	        <div class="main-visual-news-txt">
 	          <ul class="main-list">
-	          
-	          	<li class="main-list-item">
-	          	   <a href="#">2024 스카이트랙스 최고공항상 투표에 참여해주세요!</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	  <a href="#">대중교통 프로모션 #1. 어린이와 청소년은 공항버스 무료</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	   <a href="#">주차장 혼잡 안내</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	   <a href="#"> 국가유공자 우선주차구역 운영개시 알림 및 협조요청</a>
-	            </li>
+	          <c:forEach var="tdto2" items="${list}">
+	          		 <li class="main-list-item">
+		                <a href="/community/tView?t_bno=${tdto2.t_bno}">${tdto2.t_btitle}</a>
+		             </li>
+              </c:forEach>
 	          </ul>
-	          <a href="#" class="more-link-plus">더보기</a>
+	          <a href="/community/tList" class="more-link-plus">더보기</a>
 	        </div>
 	      </div><!-- End main-visual-news-section first -->
 	
 	      <div class="main-visual-news-section middle">
-	        
-	        <h3 class="main-visual-news-title press">자유게시판</h3>
-	        <div class="main-visual-news-txt">
-	          <ul class="main-list">
-	            
-	          	<li class="main-list-item">
-	              <a href="#">만 4년만에 일일 여객 20만명 돌파!!</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	  <a href="#">2024년도신년인사회 개최</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	              <a href="#">‘2023년 고용노동행정 유공포상’ 지역산업고용정책분야 고용노동부 장관상 수상 !</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	  <a href="#">인천공항 제2공항물류단지에 글로벌 배송센터(GDC) 신규 유치 !!!</a>
-	            </li>
-	          </ul>
-	          <a href="#" class="more-link-plus">더보기</a>
-	        </div>
-	      </div><!-- End main-visual-news-section middle -->
+		 <h3 class="main-visual-news-title press">자유게시판</h3>
+			<div class="main-visual-news-txt">
+		     	<ul class="main-list">
+		        <c:forEach var="fdto2" items="${list2}">
+		            <li class="main-list-item">
+		                <a href="/community/fView?f_bno=${fdto2.f_bno}">${fdto2.f_btitle}</a>
+		            </li>
+		        </c:forEach>
+	   		    </ul>
+		    <a href="/community/fList" class="more-link-plus">더보기</a>
+		    </div><!-- End main-visual-news-section middle -->
+		    </div>
 	
 	      <div class="main-visual-news-section last">
 	      	<h3 class="main-visual-news-title notice">공지사항</h3>
 	        <div class="main-visual-news-txt">
 	          <ul class="main-list">
-	          
-	          	<li class="main-list-item">
-	          	   <a href="#">2024 스카이트랙스 최고공항상 투표에 참여해주세요!</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	  <a href="#">대중교통 프로모션 #1. 어린이와 청소년은 공항버스 무료</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	   <a href="#">주차장 혼잡 안내</a>
-	            </li>
-	            
-	          	<li class="main-list-item">
-	          	   <a href="#"> 국가유공자 우선주차구역 운영개시 알림 및 협조요청</a>
-	            </li>
+	          	<c:forEach var="ndto2" items="${list3}">
+	          		 <li class="main-list-item">
+		               <a href="/community/nView?n_bno=${ndto2.n_bno}">${ndto2.n_btitle}</a>
+		             </li>
+              </c:forEach>
 	          </ul>
-	          <a href="#" class="more-link-plus">더보기</a>
+	          <a href="/community/nList" class="more-link-plus">더보기</a>
 	      </div><!-- End main-visual-news-section last -->
-
-      </div>
+    	</div>
      </div> 
     </section><!-- End Testimonials Section -->
 

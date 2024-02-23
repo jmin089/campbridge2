@@ -25,9 +25,12 @@ import com.java.www.dto.PJoinDto;
 import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 import com.java.www.service.FService;
+import com.java.www.service.FService2;
 import com.java.www.service.NBoardService;
+import com.java.www.service.NService2;
 import com.java.www.service.PService;
 import com.java.www.service.TBService;
+import com.java.www.service.TService2;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -45,6 +48,15 @@ public class CController {
 	TBService tbService;
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	FService2 fService2;
+	
+	@Autowired
+	TService2 tService2;
+	
+	@Autowired
+	NService2 nService2;
 
 	// 1.공지사항 리스트 session_id 확인하기
 	@GetMapping("session_check")
@@ -89,7 +101,11 @@ public class CController {
 	@PostMapping("NCommnetInsert")
 	@ResponseBody
 	public NCommentDto NCommnetInsert(NCommentDto ncdto) {
-		System.out.println("컨트롤러 NCommnetInsert n_ccontent" + ncdto.getN_cno());
+		System.out.println("============================================================================");
+		System.out.println("컨트롤러 NCommnetInsert n_ccontent getN_cno :" + ncdto.getN_cno());
+		System.out.println("컨트롤러 NCommnetInsert n_ccontent getN_bno:" + ncdto.getN_bno());
+		System.out.println("컨트롤러 NCommnetInsert n_ccontent getN_ccontent :" + ncdto.getN_ccontent());
+		System.out.println("============================================================================");
 		NCommentDto nCommentDto = nbService.NCommnetInsert(ncdto);
 
 		return nCommentDto;
@@ -163,14 +179,17 @@ public class CController {
 		String orgName = "";
 		String newName = "";
 
-		if (!files1.isEmpty())
+		if (!files1.isEmpty()) {
 			orgName = files1.getOriginalFilename();
-		long time = System.currentTimeMillis();
-		newName = time + "_" + orgName;
-		String upload = "c:/upload/";
-		File f = new File(upload + newName);
-		files1.transferTo(f);
-		nbdto.setN_bfile(newName);
+			long time = System.currentTimeMillis();
+			newName = time + "_" + orgName;
+			String upload = "c:/upload/";
+			File f = new File(upload + newName);
+			files1.transferTo(f);
+			nbdto.setN_bfile(newName);
+		} else {
+			nbdto.setN_bfile("");
+		} // 
 
 		nbService.donUpdate(nbdto);
 		model.addAttribute("result", "Update-W");
@@ -308,7 +327,7 @@ public class CController {
 
 	// 2. 파티원 모집 - 게시글 수정 저장
 	@PostMapping("doPUpdate")
-	public String doPUpdate(PBoardDto pbdto, @RequestParam MultipartFile p_uBfile, Model model) throws Exception {
+	public String doPUpdate(PBoardDto pbdto, @RequestParam MultipartFile p_uBfile,String pFile, Model model) throws Exception {
 
 		if (!p_uBfile.isEmpty()) {
 			String oriFName = p_uBfile.getOriginalFilename();
@@ -323,7 +342,7 @@ public class CController {
 			// pbdto파일이름 저장
 			pbdto.setP_bfile(upFName);
 		} else {
-			pbdto.setP_bfile("");
+			pbdto.setP_bfile(pFile);
 		} // if(p_ufile)
 
 		// service 연결
@@ -334,7 +353,7 @@ public class CController {
 
 		return "/community/doFBoard";
 
-	}// doFUpdate(pbdto, p_ufile, model)
+	}// doPUpdate(pbdto, p_ufile, model)
 
 	// 4.SummerNote 내용부분 - 이미지 추가시 파일업로드
 	@PostMapping("summernotePartyUpdate")
@@ -746,7 +765,7 @@ public class CController {
 
 	// 4.자유게시글 수정저장
 	@PostMapping("doFUpdate")
-	public String doFUpdate(FBoardDto fbdto, @RequestPart MultipartFile uFile, Model model) throws Exception {
+	public String doFUpdate(FBoardDto fbdto, @RequestPart MultipartFile uFile, String fFile, Model model) throws Exception {
 
 		// fbdto ->fFile
 		System.out.println("CController doFUpdate f_bno : " + fbdto.getF_bno());
@@ -763,7 +782,7 @@ public class CController {
 			// fbdto파일이름 저장
 			fbdto.setF_bfile(upFName);
 		} else {
-			fbdto.setF_bfile("");
+			fbdto.setF_bfile(fFile);
 		} // if(uFile)
 
 		// service연결
@@ -917,4 +936,135 @@ public class CController {
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 자유게시판
 
+	//공지사항 전체 가져오기
+		@GetMapping("nList2")
+		public String nList2(@RequestParam(defaultValue = "1") int page, 
+				@RequestParam(required = false) String category,
+				@RequestParam(required = false) String input_search,
+				@RequestParam(required = false) String searchTitle,
+				@RequestParam(required = false) String searchWord, 
+				Model model) {
+			System.out.println("MBController category1 : " + category);
+			if(category!=null) {
+				searchTitle = category;
+				searchWord = input_search;
+				System.out.println("MBController category2 : " + category);
+			}
+			System.out.println("MBController searchTitle : " + searchTitle);
+			System.out.println("MBController searchWord : " + searchWord);
+			Map<String, Object> map = nService2.NlistSelectAll(page, searchTitle, searchWord);
+			model.addAttribute("map", map);
+			return "/community/nList2";
+		}
+		
+		//공지사항 검색 가져오기
+		@GetMapping("nSelectSearch") 
+		public String nSelectSearch(@RequestParam(defaultValue = "1")int page, 
+				@RequestParam(required = false)String searchTitle,
+				@RequestParam(required = false)String searchWord, Model model) {
+			System.out.println("MBController search category : "+searchTitle);
+			System.out.println("MBController search searchWord : "+searchWord);
+			Map<String, Object> map = nService2.NSelectSearch(page,searchTitle,searchWord);
+			model.addAttribute("map",map);
+			return "/community/nList2";
+		}
+		
+		//공지사항 1개 가져오기
+		@RequestMapping("nView2")
+		public String nView2(@RequestParam(defaultValue = "1")int bno, Model model) {
+			Map<String, Object> map = nService2.NlistSelectOne(bno);
+			model.addAttribute("map", map);
+			return "/community/nView2";
+		}
+		
+		
+		
+		
+		//꿀팁게시글 전체 가져오기
+		@GetMapping("tList2")
+		public String tList2(@RequestParam(defaultValue = "1") int page, 
+				@RequestParam(required = false) String category,
+				@RequestParam(required = false) String input_search,
+				@RequestParam(required = false) String searchTitle,
+				@RequestParam(required = false) String searchWord, 
+				Model model) {
+			System.out.println("MBController category1 : " + category);
+			if(category!=null) {
+				searchTitle = category;
+				searchWord = input_search;
+				System.out.println("MBController category2 : " + category);
+			}
+			System.out.println("MBController searchTitle : " + searchTitle);
+			System.out.println("MBController searchWord : " + searchWord);
+			Map<String, Object> map = tService2.TlistSelectAll(page, searchTitle, searchWord);
+			model.addAttribute("map", map);
+			return "/community/tList2";
+		}
+		
+		//꿀팁게시글 검색 가져오기
+		@GetMapping("tSelectSearch") 
+		public String tSelectSearch(@RequestParam(defaultValue = "1")int page, 
+				@RequestParam(required = false)String searchTitle,
+				@RequestParam(required = false)String searchWord, Model model) {
+			System.out.println("MBController search category : "+searchTitle);
+			System.out.println("MBController search searchWord : "+searchWord);
+			Map<String, Object> map = tService2.TSelectSearch(page,searchTitle,searchWord);
+			model.addAttribute("map",map);
+			return "/community/tList2";
+		}
+		
+		//꿀팁게시글 1개 가져오기
+		@RequestMapping("tView2")
+		public String tView2(@RequestParam(defaultValue = "1")int bno, Model model) {
+			Map<String, Object> map = tService2.TlistSelectOne(bno);
+			model.addAttribute("map", map);
+			return "/community/tView2";
+		}
+		
+		
+		
+		
+		
+		//게시글 전체 가져오기
+		@GetMapping("fList2")
+		public String fList2(@RequestParam(defaultValue = "1") int page, 
+				@RequestParam(required = false) String category,
+				@RequestParam(required = false) String input_search,
+				@RequestParam(required = false) String searchTitle,
+				@RequestParam(required = false) String searchWord, 
+				Model model) {
+			System.out.println("MBController category1 : " + category);
+			if(category!=null) {
+				searchTitle = category;
+				searchWord = input_search;
+				System.out.println("MBController category2 : " + category);
+			}
+			System.out.println("MBController searchTitle : " + searchTitle);
+			System.out.println("MBController searchWord : " + searchWord);
+			Map<String, Object> map = fService2.FlistSelectAll(page, searchTitle, searchWord);
+			model.addAttribute("map", map);
+			return "/community/fList2";
+		}
+		
+		//게시글 검색 가져오기
+		@GetMapping("FSelectSearch") 
+		public String fSelectSearch(@RequestParam(defaultValue = "1")int page, 
+				@RequestParam(required = false)String searchTitle,
+				@RequestParam(required = false)String searchWord, Model model) {
+			System.out.println("MBController search category : "+searchTitle);
+			System.out.println("MBController search searchWord : "+searchWord);
+			Map<String, Object> map = fService2.FSelectSearch(page,searchTitle,searchWord);
+			model.addAttribute("map",map);
+			return "/community/fList2";
+		}
+		
+		//게시글 1개 가져오기
+		@RequestMapping("fView2")
+		public String fView2(@RequestParam(defaultValue = "1")int bno, Model model) {
+			Map<String, Object> map = fService2.FlistSelectOne(bno);
+			model.addAttribute("map", map);
+			return "/community/fView2";
+		}
+		
+	
 }// CController

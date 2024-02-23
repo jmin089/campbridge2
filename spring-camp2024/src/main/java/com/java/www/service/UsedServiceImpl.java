@@ -124,6 +124,7 @@ public class UsedServiceImpl implements UsedService {
 	//View탭 & 이전글,다음글 가져오기
 	@Override
 	public Map<String, Object> selectOne(int u_bno,String u_btype) {
+		System.out.println("selectOne u_bno :"+u_bno);
 		UsedDto udto = usedMapper.selectOne(u_bno,u_btype);
 		UsedDto preudto = usedMapper.selectOneprev(u_bno,u_btype);
 		UsedDto nextudto = usedMapper.selectOnenext(u_bno,u_btype);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
@@ -18,8 +19,7 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
@@ -35,25 +35,42 @@
 <link href="/assets/css/review/siteReview.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/review/listStyle2.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/review/header2.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<script src="../assets/js/cps_review/RE_site.js"></script>
 </head>
+<style>
+	.replynum{margin-left: 72px; margin-top: -53px; width: 200px; height: 22px;}
+	.notice_img img{text-align: left; width:50%}
+	.notice_noimgfile {padding: 20px 0 20px 48px;}
+	.notice_noimg img{height:30px;}
+	#notice_bfile{border-top : 1px solid silver; border-bottom : 1px solid silver;}
+	.password{width: 75px; height: 28px; position: relative; top: 45px; left: 20px;}
+</style>
 <body>
 	<!-- ======= Header ======= -->
 	<%@include file="../include/header.jsp"%>
 	<!-- End Header -->
 	<section class="headerCss">
 		<div id="contentWrap">
-			<link type="text/css" rel="stylesheet" href="#" />
+			<link type="text/css" rel="stylesheet" href="#">
 			<div id="content">
 				<div id="bbsData">
 					<div class="page-body">
+					
+						<!-- 캠핑장 리뷰 메뉴 시작 -->
 						<div class="camp-img-div">
-							<img src="../assets/img/campReview/free_icon_icon.png" alt="캠핑용품리뷰"
-								style="position: relative; margin-top: 40px; margin-bottom: 10px;">
+							<img src="../assets/img/campReview/free_icon_icon.png" alt="캠핑용품리뷰" style="position: relative; margin-top: 40px; margin-bottom: 10px;">
 							<h1 style="text-align: center;">캠핑장리뷰</h1>
 						</div>
 						<br>
-					<form id="comment_form" name="comment" action="#" method="post" autocomplete="off" 
-					style="height: 1800px; position: relative; top: 100px; left: 270px;">
+						<!-- 캠핑장 리뷰 메뉴 끝 -->
+	
+						<form id="siteUpdateFrm" name="siteUpdateFrm" action="#" method="post" autocomplete="off" style="height: 1800px; position: relative; top: 100px; left: 270px;">
+						<input type="hidden" name="cps_bno" value="">
+						
+						<!-- 본문 시작 -->
 						<div class="bbs-table-view">
 							<table summary="게시글 보기">
 							
@@ -64,64 +81,59 @@
 						        <col width="13%">
 				   			</colgroup>
 						    <tr>
-						       <th style="text-align: left;"><strong>캠핑장 이름</strong></th>
-						       <th style="text-align: left;"><span>${_facltNm }</span></th>
+						       <th style="text-align: left;"><strong>글제목</strong></th>
+						       <th style="text-align: left;"><span>${_lineIntro }</span></th>
 						       <th style="text-align: left;"><strong>DATE</strong></th>
 						       <th style="white-space: nowrap; position: relative; right: 15px;">${_createdtime }</th>
 						    </tr>
 						    <tr style="border-bottom: 2px solid #009223;">
-						       <td style="text-align: left; font-size: 15px;"><strong>주소</strong></td>
-						       <td style="font-size: 15px; text-align: left;">${_addr1 }</td>
+						       <td style="text-align: left; font-size: 15px;"><strong>NAME</strong></td>
+						       <td style="font-size: 15px; text-align: left;">${_facltNm }</td>
 						       <td style="text-align: left; font-size: 15px;"><strong>HIT</strong></td>
-						       <td style="font-size: 15px; text-align: left;">8</td>
+						       <td style="font-size: 15px; text-align: left;">3</td>
 						    </tr>
-									<tr>
-										<td>
-											<div class="data-bd-cont">
-												<div id=MS_WritenBySEB style="color: black;">${_lineIntro }</div>
-												<br> <img src="${_firstImageUrl }"
-													style="width: 400px; height: 300px;">
-												<p style="color: black; white-space: nowrap; font-size: 15px;">${_tooltip }</p>	
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						<div id="comment_list_0"></div>
-							<input type="hidden" name="page_type" value="board_view"/>
-							<input type="hidden" name="formnum" value="0"/>
-							<input type="hidden" name="code" value="ocamall_board13"/>
-							<input type="hidden" name="num1" value="998627"/>
-							<input type="hidden" name="num2" value="00000"/>
-							<input type="hidden" name="page" value="1"/>
-							<input type="hidden" name="lock" value="N"/>
-							<input type="hidden" name="type" value="v"/>
-							<input type="hidden" name="uti" value="1705459911"/>
-							<input type="hidden" name="key" value="aqT3cAkuQhSMdd9t5n0exgHGEMulYxadTSJSwoN5qtPU19Dm/4pWyQ=="/>
-							<input type="hidden" name="type2"/>
-							<input type="hidden" name="comnum"/>
-							<input type="hidden" name="comtype"/>
-							<input type="text" name="___DUMMY___" readonly disabled style="display: none;"/>
-						<input type="hidden" name="secret" value="N"/>
-						
-						<div class="bfileUpload" style="border-bottom: 2px solid #009223; border-top: 1px solid #eee; height: 60px; display: flex;">
-							<tr style="text-align: center;">
-								<div style="width: 86px; height: 40px; position: relative; margin: 15px 10px 0px 10px; ">
-									<td class="article" style="position: relative;"><strong>첨부파일</strong></td>
-								</div>
-								<div style="width: 773.02px; height: 40px; position: relative; margin: 15px 10px 0px 10px;">
-									<td colspan="3" style="text-align: center;">※첨부파일 없음</td>
-								</div>
+							<tr>
+								<td>
+									<div class="data-bd-cont">
+										<div id="MS_WritenBySEB">${_lineIntro }</div>
+										<!-- <br> <img src="../assets/img/campReview/campReview.jpg" style="width: 400px; height: 400px;"> -->
+									</div>
+								</td>
 							</tr>
+							</tbody>
+						</table>
+						<div id="comment_list_0">
+							<div class="bfileUpload" style="border-bottom: 1px solid #eee; border-top: 1px solid #eee; height: 45px; display: flex; padding: 10px 0 10px 19px;">
+								<tr id="notice_bfile">
+									<td class="article" style="text-align: center;"><strong style="width: 100px">첨부파일</strong></td>
+										<td colspan="3">${_firstImageUrl }</td>
+							</div>
+									
+							<div class="bfileUpload" style="border-bottom: 2px solid #009223; border-top: 1px solid #eee; height: 100%; display: flex; padding: 10px 0 10px 19px;">
+									<tr style="border-bottom: 2px solid #009223;">
+										<td class="notice_noimgfile"><strong  style="width: 100px">메인이미지</strong></td>
+										<td colspan="3" class="notice_img" ><img src="${_firstImageUrl }"></td>
+									</tr>
+								
+									<c:if test="${_firstImageUrl==null}">
+										<td colspan="3">※첨부파일 없음※</td>
+										<tr style="border-bottom: 2px solid #009223;">
+											<td class="notice_noimgfile"><strong  style="width: 100px">이미지</strong></td>
+											<td colspan="3" class="notice_noimg"><img src="#"></td>
+										</tr>
+									</c:if>
+								</tr>
+							</div>
 						</div>
-
-						<!-- 이전글/다음글 시작-->
+						<!-- 본문 끝 -->
+						
+			<!-- 이전글/다음글 시작-->
 						<table style="margin-top: -80px; position: relative; top: 120px; font-size: 14px; width: 1100px;">
 							<tr>
-								<td colspan="4" style="border-bottom: 2px solid #eee;"><strong>다음글</strong> <span class="separator">|</span><a href="/review_site2">${_lineIntro }</a></td>
+								<td colspan="4" style="border-bottom: 2px solid #eee;"><strong>다음글</strong> <span class="separator">|</span><a href="/review_site">${_lineIntro }</a></td>
 							</tr>
 							<tr>
-								<td colspan="4"><strong>이전글</strong> <span class="separator">|</span><a href="/review_site2">${_lineIntro }</a></td>
+								<td colspan="4"><strong>이전글</strong> <span class="separator">|</span><a href="/review_site">${_lineIntro }</a></td>
 							</tr>
 						</table>
 						<!-- 이전글/다음글 끝-->

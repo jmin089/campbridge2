@@ -46,9 +46,10 @@
 			<!-- 피드 전체 시작 -->
 	 		<ul class="feedUlCont">
 	 			<!-- 하나의 피드 시작 -->
+			<c:forEach var="partyDto" items="${myPartyList}" begin="1" end="3">
 	 			<li class="oneFeedv">
 	 				<div class="imgContv">
-		 		      <a href="../community/pView"><img src="../assets/img/mypage/firev.png"></a>
+		 		      <a href="../community/pView?p_bno=${partyDto.p_bno}&p_btype=${partyDto.p_btype}"><img src="../assets/img/mypage/firev.png"></a>
 	 				</div>
 		 			<div class="postTextBoxv">
 		 				<div class="wantParty">
@@ -57,7 +58,7 @@
 		 				<div class="wantParty2">
 		 					<div class="lineTitv">
 			 					<div class="partyTit">
-			 						<strong>불멍Night</strong>
+			 						<strong>Woman of Antwerp 파티원 모집</strong>
 			 					</div>
 			 					<div class="recruitv">
 					 				<p>모집중</p>
@@ -71,14 +72,18 @@
 				 					<p>2/4<p>
 				 				</div>
 				 				<div class="moimPeriod">
-				 					<p>참여기간 : 24.03.08~03.10<p>
+				 					<p>참여기간: 2024.02.23 ~
+				 					
+				 					<p>
 				 				</div>
 		 					</div><!--모집중  -->
 			 			</div>
 		 			</div>
 	 			</li>
+	 			</c:forEach>
 	 			<!-- 하나의 피드 끝 -->
 	 			<!-- 하나의 피드 시작 -->
+	 			<c:forEach var="partyDto" items="${myPartyList}" begin="1" end="3">
 	 			<li class="oneFeedv">
 	 				<div class="imgContv">
 		 		      <a href="../community/pView"><img src="../assets/img/mypage/valleyv.png"></a>
@@ -90,10 +95,10 @@
 		 				<div class="wantParty2">
 		 					<div class="lineTitv">
 			 					<div class="partyTit">
-			 						<strong>계곡 주변 캠핑장</strong>
+			 						<strong>Woman of Antwerp 파티원 모집</strong>
 			 					</div>
 			 					<div class="recruitv">
-					 				<p>모집완료</p>
+					 				<p>모집중</p>
 					 			</div>
 		 					</div>
 		 					<div class="moim" >
@@ -104,14 +109,16 @@
 				 					<p>3/4<p>
 				 				</div>
 				 				<div class="moimPeriod">
-				 					<p>참여기간 : 23.08.25~08.26<p>
+				 					<p>참여기간: 2023.08.04~08.05<p>
 				 				</div>
 		 					</div><!--모집중  -->
 			 			</div>
 		 			</div>
 	 			</li>
+	 			</c:forEach>
 	 			<!-- 하나의 피드 끝 -->
 	 			<!-- 하나의 피드 시작 -->
+	 			<c:forEach var="partyDto" items="${myPartyList}" begin="1" end="3">	
 	 			<li class="oneFeedv">
 	 				<div class="imgContv">
 		 		      <a href="../community/pView"><img src="../assets/img/mypage/bbq.png"></a>
@@ -123,10 +130,10 @@
 		 				<div class="wantParty2">
 		 					<div class="lineTitv">
 			 					<div class="partyTit">
-			 						<strong>황금연휴 바베큐파티</strong>
+			 						<strong>Woman of Antwerp 파티원 모집</strong>
 			 					</div>
 			 					<div class="recruitv">
-					 				<p>모집완료</p>
+					 				<p>모집중</p>
 					 			</div>
 		 					</div>
 		 					<div class="moim" >
@@ -137,15 +144,15 @@
 				 					<p>4/4</p>
 				 				</div>
 				 				<div class="moimPeriod">
-				 					<p>참여기간 : 23.04.02~04.03<p>
+				 					<p>참여기간: 2022.07.21~07.22<p>
 				 				</div>
 		 					</div><!--모집중  -->
 			 			</div>
 		 			</div>
 	 			</li>
 	 			<!-- 하나의 피드 끝 -->
-	 			
 	 		</ul>
+	 		</c:forEach>
 	 		<!-- 피드 전체 끝 -->
 	 	</div>
 	 </div>

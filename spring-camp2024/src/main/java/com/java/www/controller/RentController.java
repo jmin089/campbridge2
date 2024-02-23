@@ -58,7 +58,6 @@ public class RentController {
 			}
 		}
 		model.addAttribute("proId", proId);
-		
 		return "redirect:/rent/cp_Cart"; 
 	}
 	

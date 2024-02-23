@@ -169,17 +169,16 @@
 									        
 									        if(confirm_val) {
 									            let cart_id = $(this).attr("data-cart_id");
-									            //alert(cart_id)
 									            $.ajax({
 									                url: "/rent/deleteOneCart",
 									                type: "post",
-									                data: { "cart_id": cart_id },
+									                data: {"cart_id": cart_id},
 									                success: function(result) {
-									                    alert("성공");
+									                    //alert("성공");
 									                        location.href = "/rent/cp_Cart";
 									                },
 									                error: function() {
-									                    alert("실패");
+									                    //alert("실패");
 									                }
 									            }); //ajax 끝.
 									        } //if
@@ -207,7 +206,6 @@
 						</div>
 					
 						<script>
-						
 						$(document).ready(function() {
 					        $("#allCheck").change(function() {
 					            $(".chbox").prop("checked", $(this).prop("checked"));
@@ -217,28 +215,24 @@
 						$(".selectDelete_btn").click(function(){
 					        let confirm_val = confirm("선택된 물품을 정말 삭제하시겠습니까?");
 					        
-					        
 					        if(confirm_val) {
 					        	let checkArr = [];
 					        	$("input[class='chbox']:checked").each(function(){
 				                    checkArr.push($(this).attr("data-cart_id"));
 				                });
-					        	alert(checkArr)
 					            $.ajax({
 				                    url : "/rent/deleteCart",
 				                    type : "post",
 				                    data : {cart_id : checkArr},
 				                    success : function(result){
 				                        if(result == 1) {  
-				                            alert("삭제 성공");
 				                            location.href = "/rent/cp_Cart";
 				                        }
 					                },
 					                error: function() {
-					                    alert("실패");
 					                }
-					            }); //ajax 끝.
-					        } //if
+					            });
+					        }
 					    });
 						</script>
 						</li>

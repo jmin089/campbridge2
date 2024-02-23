@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +17,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.www.dto.FBoardDto2;
+import com.java.www.dto.NBoardDto2;
+import com.java.www.dto.TBoardDto2;
+import com.java.www.service.FService2;
+import com.java.www.service.NService2;
+import com.java.www.service.TService2;
+
 
 @Controller
 public class FController {
 	
+	@Autowired
+	TService2 tService2; //끌팁용
+	
+	@Autowired
+	FService2 fService2; //자유게시판용
+	
+	@Autowired
+	NService2 nService2; //공지사항용
+	
 	
 	//★메인페이지
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}// index()
@@ -67,14 +85,15 @@ public class FController {
 		
 		
 		  //메인 상단 캠핑장 추천 바로가기 클릭 시 뷰페이지 파트
-		   @GetMapping("campsearch_view")
-		   public String campsearch_view(String _addr1, String _firstImageUrl,String _tel, String _lctCl,String _facltDivNm, String _induty,String _tourEraCl,String _operDeCl,String _homepage, 
+		   @GetMapping("campsearch_view2")
+		   public String campsearch_view(String _facltNm,String _addr1, String _firstImageUrl,String _tel, String _lctCl,String _facltDivNm, String _induty,String _tourEraCl,String _operDeCl,String _homepage, 
 				  String _sbrsEtc, String _intro, String _posblFcltyCl, String _allar, String _direction,String _tooltip, int _gnrlSiteCo, int _autoSiteCo, int _glampSiteCo, 
 				  int _caravSiteCo, int _indvdlCaravSiteCo,String _sbrsCl, int _sitedStnc, int _siteBottomCl1,int _siteBottomCl2 ,int _siteBottomCl3, int _siteBottomCl4, int _siteBottomCl5,
 				  int _siteMg1Width,int _siteMg1Vrticl,int _siteMg1Co, String _eqpmnLendCl,String _brazierCl,
 				  int _extshrCo, int _frprvtWrppCo,int _frprvtSandCo,int _fireSensorCo,
 				  Model model) {
 			   model.addAttribute("_addr1", _addr1);
+			   model.addAttribute("_facltNm", _facltNm);
 			   model.addAttribute("_firstImageUrl", _firstImageUrl);
 			   model.addAttribute("_tel", _tel);
 			   model.addAttribute("_lctCl", _lctCl);
@@ -109,12 +128,12 @@ public class FController {
 			   model.addAttribute("_frprvtWrppCo", _frprvtWrppCo);
 			   model.addAttribute("_frprvtSandCo", _frprvtSandCo);
 			   model.addAttribute("_fireSensorCo", _fireSensorCo);
-			   return "/search/campsearch_view";
+			   return "/search/campsearch_view2";
 		   }
 		
 		
 		//메인 캠핑장 리뷰 랜덤 출력 파트
-		@GetMapping("/reviewCamp")
+		@GetMapping("reviewCamp")
 		@ResponseBody
 		public String reviewCamp(@RequestParam String txt) throws Exception {
 			String page = "1";
@@ -172,41 +191,89 @@ public class FController {
 			model.addAttribute("_tooltip", _tooltip);
 			return "/review/review_site2";
 		}
-	
-	
-	//사이트소개
-	@GetMapping("aboutCB")
-	public String aboutCB() {
-		return "aboutCB";
-	}// adminPage()
-	
-	//campbridge 소개
-	@GetMapping("developers")
-	public String developers() {
-		return "developers";
-	}// developers()
-	
-	// 내용부분 - 이미지추가시 파일업로드
-	@PostMapping("uploadImage")
-	@ResponseBody
-	public String uploadImage(@RequestParam MultipartFile file) throws Exception {
-		String urlLink = "";
-		if(!file.isEmpty()) {
-			String oriFName = file.getOriginalFilename();
-			long time = System.currentTimeMillis();
-			String upFName = time+"_"+oriFName;
-			String fupload = "c:/upload/";
-			
-			//파일서버에 업로드 부분
-			File f = new File(fupload+upFName);
-			file.transferTo(f);
-			
-			//파일저장위치
-			urlLink = "/upload/"+upFName;
-			System.out.println("summernoteUpload 파일 저장위치 : "+ urlLink);
+		
+
+		//메인 하단 공지사항 리스트 랜덤 출력 
+		@GetMapping("/")
+		public String index(Model model) {
+			ArrayList<TBoardDto2> t_list =  tService2.TSelectAll(); //tList용
+			ArrayList<FBoardDto2> t_list2 =  fService2.FSelectAll(); //fList용
+			ArrayList<NBoardDto2> t_list3 =  nService2.NSelectAll(); //nList용
+			model.addAttribute("list", t_list);
+			model.addAttribute("list2", t_list2);
+			model.addAttribute("list3", t_list3);
+			System.out.println("MainController list : "+t_list.size());
+			System.out.println("MainController list : "+t_list2.size());
+			System.out.println("MainController list : "+t_list3.size());
+			return "index";
 		}
-		return urlLink;
-	}
+
+		
+		@GetMapping("fList2")
+		public String fList2() {
+			return "community/fList2";
+		}// fList()
+		
+		@GetMapping("fView2")
+		public String fView2() {
+			return "community/fView2";
+		}// fView()
+		
+		
+		@GetMapping("tList2")
+		public String tList2() {
+			return "/community/tList2";
+		}// tList()
+		
+		@GetMapping("tView2")
+		public String tView2() {
+			return "community/tView2";
+		}// tView()
+		
+		@GetMapping("nList2")
+		public String nList2() {
+			return "/community/nList2";
+		}// nList()
+		
+		@GetMapping("nView2")
+		public String nView2() {
+			return "/community/nView2";
+		}// nView()
 	
+	
+		//사이트소개
+		@GetMapping("aboutCB")
+		public String aboutCB() {
+			return "aboutCB";
+		}// adminPage()
+		
+		//campbridge 소개
+		@GetMapping("developers")
+		public String developers() {
+			return "developers";
+		}// developers()
+		
+		// 내용부분 - 이미지추가시 파일업로드
+		@PostMapping("uploadImage")
+		@ResponseBody
+		public String uploadImage(@RequestParam MultipartFile file) throws Exception {
+			String urlLink = "";
+			if(!file.isEmpty()) {
+				String oriFName = file.getOriginalFilename();
+				long time = System.currentTimeMillis();
+				String upFName = time+"_"+oriFName;
+				String fupload = "c:/upload/";
+				
+				//파일서버에 업로드 부분
+				File f = new File(fupload+upFName);
+				file.transferTo(f);
+				
+				//파일저장위치
+				urlLink = "/upload/"+upFName;
+				System.out.println("summernoteUpload 파일 저장위치 : "+ urlLink);
+			}
+			return urlLink;
+		}
+		
 
 }// FController

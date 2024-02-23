@@ -87,7 +87,7 @@
 					<div class="viewtab-menu">
 		
 						<!-- 중고거래, 중고양도 체크  -->
-						<input type="hidden" name="session_id" id="session_id" value="${session_id}">
+						<input type="hidden" name="session_id" id="sid" value="${session_id}">
 						<input type="radio" name="tabview" id="tabview1" value="trade1" class="trade1">
 						<label for="tabview1">중고거래</label> 
 						<input type="radio" name="tabview" id="tabview2" value="transfer2" class="transfer2" checked> 
@@ -99,7 +99,7 @@
 							<div class="bbs-table-list">
 								<div class="view-complete">
 									<label> 
-									<input type="checkbox" name="shname" class="MS_input_checkbox possible" id="showCompleted2" >거래가능내역보기
+									<input type="checkbox" name="u_bstatus_sh2" class="MS_input_checkbox possible" id="showCompleted2" >거래가능내역보기
 									</label>
 								</div><!-- End view-complete -->
 								<table summary="제목, 작성일, 조회수, 동영상">

@@ -124,7 +124,6 @@ public class SController {
 		model.addAttribute("map", map);
 		return "/search/searchList_view";
 	}
-
 	
 	//지도 검색
 	@GetMapping("mapsearch")
@@ -173,14 +172,14 @@ public class SController {
 	}
 	
 	//지도 검색-페이지
-	@GetMapping("mapsearch_view")
-	public String mapsearch_view() {
-		return "/search/mapsearch_view";
+	@GetMapping("mapsearch_view2")
+	public String mapsearch_view2() {
+		return "/search/mapsearch_view2";
 	}// mapsearch_view()
 	
 	//캠핑장 검색-페이지
-   @GetMapping("mapSearchView")
-   public String mapSearchView(String _addr1, String _firstImageUrl,String _tel, String _lctCl,String _facltDivNm, String _induty,String _tourEraCl,String _operDeCl,String _homepage, 
+   @GetMapping("mapSearchView2")
+   public String mapSearchView2(String _addr1, String _firstImageUrl,String _tel, String _lctCl,String _facltDivNm, String _induty,String _tourEraCl,String _operDeCl,String _homepage, 
 		  String _sbrsEtc, String _intro, String _posblFcltyCl, String _allar, String _direction,String _tooltip, int _gnrlSiteCo, int _autoSiteCo, int _glampSiteCo, 
 		  int _caravSiteCo, int _indvdlCaravSiteCo,String _sbrsCl, int _sitedStnc, int _siteBottomCl1,int _siteBottomCl2 ,int _siteBottomCl3, int _siteBottomCl4, int _siteBottomCl5,
 		  int _siteMg1Width,int _siteMg1Vrticl,int _siteMg1Co, String _eqpmnLendCl,String _brazierCl,
@@ -221,7 +220,7 @@ public class SController {
 	   model.addAttribute("_frprvtWrppCo", _frprvtWrppCo);
 	   model.addAttribute("_frprvtSandCo", _frprvtSandCo);
 	   model.addAttribute("_fireSensorCo", _fireSensorCo);
-	   return "/search/mapsearch_view";
+	   return "/search/mapsearch_view2";
    }
 	   
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////지도 검색

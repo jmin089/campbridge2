@@ -63,14 +63,17 @@
 		     		<img src="../upload/${udto.m_img}">
 		     	</div>
 		     	<div class="userSetting">
+					<div class="setPF">
+						<a class="icon-link-sawtooth" id="myInfoBtn">
+						<img src="../assets/img/login/mySetting.png" alt="나의 게시물">
+						<p>${udto.id}님</p>
+						</a>
+					</div>
 		     		<c:forEach var="userCampdto" items="${list}">
 					<div class="userPF">
 						
 					</div>
 					</c:forEach>
-					<div class="setPF">
-						<a class="icon-link-sawtooth" id="myInfoBtn"><img src="../assets/img/login/mySetting.png" alt="나의 게시물"><p>${udto.id}님</p></a>
-					</div>
 		     	</div>
 		    </div><!--proF -->
 			 <div class="orderD">
@@ -131,25 +134,31 @@
 				<div class="contMP"><strong>나의 게시글</strong>
 				<hr>
 					<p>
-					<a href="../used/usedcontent">[중고거래] ★거의 새 상품! 저렴하게 팝니다★ 씨투써밋 서모라이트 리액터 컴팩트 플러스 침낭 라이너</a><br>
-					<a href="../review/review_site">[캠핑장리뷰] 경기용인카라반캠핑장 다녀왔어요 :)
-					캠핑장이 호수랑 가까운데 간격은 아이들이 충분히 뛰어놀만큼 넉넉해요. 무엇보다 조용해서 좋더라구요.
-					철수할 때 비가 와서 힘들었지만 가족과 함께 잘 놀고 잘 쉬다 왔습니다 ㅎㅎ</a>
+					<c:forEach var="usedDto" items="${list}" begin="1" end="2">
+					  <a href="../used/usedcontent?u_bno=${usedDto.u_bno}&u_btype=${usedDto.u_btype}">
+					  [중고거래&캠핑장양도] ${usedDto.u_btitle}</a><br>
+					</c:forEach>
+					<c:forEach var="csrDto" items="${list2}" begin="1" end="1">
+					  <a href="../review/review_site?cps_bno=${csrDto.cps_bno}">
+					  [캠핑장리뷰] ${csrDto.cps_btitle}</a>
+					</c:forEach>
 					</p>
 				</div>
 				<div class="contMP"><strong>마이 파티</strong><br>
 				<hr>
 					<p>
-					<a href="../community/pView">[파티 참여] 3월 둘째주 주말 불멍Night 함께하실 분들 모집합니다~~</a><br>
-					<a href="../community/pView">[파티 완료] 계곡 주변 캠핑장에서 물놀이 하고 백슉묵자했짜나!!!</a><br>
-					<a href="../community/pView">[파티 완료] 황금연휴에 멀리 떠나는 것도 일인데 서울 근교에서 바베큐나 먹자구요</a><br>
+					<c:forEach var="partyDto" items="${list3}" begin="1" end="3">
+				      <a href="../community/pView?p_bno=${partyDto.p_bno}&p_btype=${partyDto.p_btype}">
+				      [파티 모집] ${partyDto.p_btitle}</a><br>
+					</c:forEach>
 					</p>
 				</div>
 				<div class="contMP"><strong>용품 대여</strong><br>
 				<hr>
 					<p>
-					<a href="../review/equipReview">[캠핑용품리뷰] 캠브릿지 2인 패키지 대여 후기</a><br>
-					<a href="../review/equipReview">[캠핑용품리뷰] 1-2인 비박텐트 괜찮네요</a><br>
+					  <a href="/my/myRental">[용품대여] 야전침대</a><br>
+					  <a href="/my/myRental">[용품대여] 캠브릿지 2인 패키지</a><br>
+					  <a href="/my/myRental">[용품대여] 트윈버너</a><br>
 					</p>
 				</div>
 				

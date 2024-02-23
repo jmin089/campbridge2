@@ -61,39 +61,7 @@ public class NBoardServiceImpl implements NBoardService{
 		return map;
 	}
 	
-	/*
-	//게시글 리스트 검색 가져오기
-	@Override
-	public Map<String, Object> selectSearch(int page, String category, String searchWord) {
-		
-		if(page<=0) page=1;
-		int countPerPage = 10;
-		int bottomPerNum = 10;
-		int countAll = nbMapper.selectCountAll(category,searchWord);
-		
-		int maxPage = (int)Math.ceil((double)countAll/countPerPage);
-		int startPage = ((page-1)/bottomPerNum)*bottomPerNum+1;
-		int endPage = (startPage+bottomPerNum)-1;
-		
-		int startRow = (page-1)*countPerPage+1; 
-		int endRow =startRow+countPerPage-1;
-		
-		if(endPage>maxPage) endPage=maxPage;
-		ArrayList<NBoardDto> list = nbMapper.selectSearch(startRow,endRow,category,searchWord);
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("list", list);
-		map.put("countAll", countAll);
-		map.put("page", page);
-		map.put("maxPage", maxPage);
-		map.put("startPage", startPage);
-		map.put("endPage", endPage);
-		
-		
-		return map;
-	}
-*/
-	
+
 	//게시글 1개 가져오기, 이전글, 다음글 가져오기, 조회수 가져오기
 	@Override
 	public Map<String, Object> selectOne(int n_bno) {
@@ -145,7 +113,12 @@ public class NBoardServiceImpl implements NBoardService{
 		
 		//session_id로 변환하기
 		ncdto.setId((String)session.getAttribute("session_id"));
-		
+		System.out.println("=============================================================");
+		System.out.println("NBoardServiceImpl NCommnetInsert getId :"+ncdto.getId());
+		System.out.println("NBoardServiceImpl NCommnetInsert :"+ncdto.getN_cno());
+		System.out.println("NBoardServiceImpl NCommnetInsert :"+ncdto.getN_bno());
+		System.out.println("NBoardServiceImpl NCommnetInsert :"+ncdto.getN_ccontent());
+		System.out.println("=============================================================");
 		
 		
 		nbMapper.NCommnetInsert(ncdto);

@@ -147,6 +147,12 @@ th, td {
 	font-weight: 700;
 }
 
+.on {
+	font-weight: 700;
+	background: #009223;
+	color: #ffce32;
+}
+
 .num:hover {
 	width: 36px;
 	height: 35px;

@@ -632,15 +632,10 @@ a {
 }
 
 .on {
-	width: 36px;
-	height: 35px;
-	padding: 0;
-	list-style: none;
 	font-weight: 700;
 	background: #009223;
 	color: #ffce32;
 }
-
 
 .num-review:hover {
 	width: 36px;
