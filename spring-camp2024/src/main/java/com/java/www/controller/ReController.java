@@ -144,7 +144,7 @@ public class ReController {
 		//서비스 연결
 		String result = reviewService.Cps_commentDelete(cps_cno);
 		System.out.println("result: "+result);
-		return result;
+		return result+"";
 	}
 	
 	//캠핑리뷰 - 리스트(캠핑장)    댓글 1개 수정저장

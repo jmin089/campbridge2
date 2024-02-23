@@ -33,7 +33,7 @@ $(function(){
 			 data:{"themaEnvrnCl":themaEnvrnCl},
 			 dataType:"json",
 			 success:function(data){
-				 alert("성공");
+				 //alert("성공");
 				 
         	     let hdata = "";
         	     for(let i=0; i<data.length; i++){
