@@ -174,10 +174,10 @@ public class FController {
 		
 
 	   //메인 캠핑장 리뷰 더보기 클릭 시 뷰페이지 출력 파트
-	   @GetMapping("equipReview")
-		public String equipReview() {
-			return "/review/equipReview";
-		}//equipReview()
+//	   @GetMapping("equipReview")
+//		public String equipReview() {
+//			return "/review/equipReview";
+//		}//equipReview()
 
 		
 		@GetMapping("review_site2")

@@ -23,17 +23,17 @@ public class RentServiceImpl implements RentService{
 	public void rentCart_list(String proId, String id) {
 		rentMapper.rentCart_list(proId, id);
 	}
-	//중복품목 업데이트
-	@Override
-	public void rentUpdate(String proId) {
-		rentMapper.updatecount(proId);
-	}
 	// 장바구니에 리스트
 	@Override
 	public List<Product_rentcartDto> rentCart(String proId) {
 		List<Product_rentcartDto> list = rentMapper.rentCart(proId);
 		System.out.println("RentServiceIm plrentCart : "+proId);
 		return list;
+	}
+	//중복품목 업데이트
+	@Override
+	public void rentUpdate(String proId) {
+		rentMapper.updatecount(proId);
 	}
 	// 품목삭제 버튼으로 해당품목만 삭제
 	@Override

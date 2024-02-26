@@ -54,7 +54,7 @@ public class RentController {
 				if(check==0) {
 					rentService.rentCart_list(proId, id);
 				}
-				System.out.println("RentController cp_Cart 넘어오는 것 : " + proId); 
+				System.out.println("RentController cp_Cart proId : " + proId); 
 			}
 		}
 		model.addAttribute("proId", proId);

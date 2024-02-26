@@ -977,9 +977,6 @@ public class CController {
 			return "/community/nView2";
 		}
 		
-		
-		
-		
 		//꿀팁게시글 전체 가져오기
 		@GetMapping("tList2")
 		public String tList2(@RequestParam(defaultValue = "1") int page, 
@@ -1020,10 +1017,6 @@ public class CController {
 			model.addAttribute("map", map);
 			return "/community/tView2";
 		}
-		
-		
-		
-		
 		
 		//게시글 전체 가져오기
 		@GetMapping("fList2")

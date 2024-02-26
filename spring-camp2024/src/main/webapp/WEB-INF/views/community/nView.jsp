@@ -40,7 +40,6 @@
 	    <script src="../assets/js/community/nView.js"></script>
 	    <link href="../assets/css/community/nstyle.css" rel="stylesheet">
 	    
-	    
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -50,7 +49,7 @@
 		<section class="notice">
 		
 			<!-- 공지사항 글보기 -->
-	    	<h1 style="float: left; margin: 40px 0 0 700px; font-weight: 700; position: relative; left:50px;">공지사항 게시글</h1>
+	    	<h1 style="float: left; margin: 200px 0 100px 700px; font-weight: 700; position: relative; left:50px;">공지사항 게시글</h1>
 		    <table class="view_table">
 		     <colgroup>
 		        <col width="15%">

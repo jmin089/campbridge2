@@ -32,7 +32,7 @@
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 	    <link href="../assets/css/header.css" rel="stylesheet">
 		<link href="../assets/css/rent/rentcart.css" rel="stylesheet">
-	    
+	    <script src="../assets/js/rent/rent.js"></script>
 	    
 	</head>
 	<body>
@@ -65,69 +65,64 @@
 			        <th scope="col" class="tnone">주문</th>
 			    </thead>
 			<script>
-    $(document).ready(function() {
-        $(".countBtnDown").on('click', countBtnDown);
-        $(".countBtnUp").on('click', countBtnUp);
-		let stat = "";
+   			$(document).ready(function() {
+       			$(".countBtnDown").on('click', countBtnDown);
+        		$(".countBtnUp").on('click', countBtnUp);
+				let stat = "";
         
-        // 수량을 감소시키는 함수
-        function countBtnDown() {
-            let current_count = $(this).siblings(".current_count");
-            let count = parseInt(current_count.val());
-            if (count > 1) {
-                current_count.val(count - 1);
-                updateTotalPrice($(this));
-                stat = "countDown";
-                updateQuantityOnServer($(this),stat);
-            }
-        }
+		        // 수량을 감소시키는 함수
+		        function countBtnDown() {
+		            let current_count = $(this).siblings(".current_count");
+		            let count = parseInt(current_count.val());
+		            if (count > 1) {
+		                current_count.val(count - 1);
+		                updateTotalPrice($(this));
+		                stat = "countDown";
+		                updateQuantityOnServer($(this),stat);
+		            }
+		        }
 
-        // 수량을 증가시키는 함수
-        function countBtnUp() {
-            let current_count = $(this).siblings(".current_count");
-            let count = parseInt(current_count.val());
-            current_count.val(count + 1);
-            updateTotalPrice($(this));
-            stat = "countUp";
-            updateQuantityOnServer($(this),stat);
-        }
+		        // 수량을 증가시키는 함수
+		        function countBtnUp() {
+		            let current_count = $(this).siblings(".current_count");
+		            let count = parseInt(current_count.val());
+		            current_count.val(count + 1);
+		            updateTotalPrice($(this));
+		            stat = "countUp";
+		            updateQuantityOnServer($(this),stat);
+		        }
 
-        // 합계금액을 업데이트하는 함수
-        function updateTotalPrice(countBtn) {
-            let parentRow = countBtn.closest("tbody");
-            let unitPriceText = parentRow.find('.tnone').text().replace(' 원', '').replace(',', '');
-            let unitPrice = parseFloat(unitPriceText);
-            let quantity = parseInt(parentRow.find('.current_count').val());
-            let totalPrice = unitPrice * quantity;
-            parentRow.find('.total_tnone').text(totalPrice.toLocaleString() + ' 원');
-        }
+		        // 합계금액을 업데이트하는 함수
+		        function updateTotalPrice(countBtn) {
+		            let parentRow = countBtn.closest("tbody");
+		            let unitPriceText = parentRow.find('.tnone').text().replace(' 원', '').replace(',', '');
+		            let unitPrice = parseFloat(unitPriceText);
+		            let quantity = parseInt(parentRow.find('.current_count').val());
+		            let totalPrice = unitPrice * quantity;
+		            parentRow.find('.total_tnone').text(totalPrice.toLocaleString() + ' 원');
+		        }
 
-        // 서버에 수량 업데이트 함수
-        function updateQuantityOnServer(countBtn,stat) {
-            let parentRow = countBtn.closest("tbody");            
-            let cart_id = parentRow.find('.cart_id').val();
-            //let pro_id = parentRow.find('.pro_id').val(); // 상품 ID 추가
-            let current_count = parseInt(parentRow.find('.current_count').val());
-			//alert(cart_id)
-			//alert(pro_id)
-			//alert(current_count)
-            // AJAX를 사용하여 서버에 업데이트된 수량 전송
-            $.ajax({
-                url: "/rent/updatecount",
-                type: "post",
-                data: {"cart_id": cart_id, "cart_count": current_count, "stat":stat},
-                dataType: "text",
-                success: function(result) {
-                    alert("성공");
-                   /*  location.href = "/rent/cp_Cart"; */
-                },
-                error: function() {
-                    alert("실패");
-                }
-            }); //ajax 끝
-        }
-    });
-</script>
+		        // 서버에 수량 업데이트 함수
+		        function updateQuantityOnServer(countBtn,stat) {
+		            let parentRow = countBtn.closest("tbody");            
+		            let cart_id = parentRow.find('.cart_id').val();
+		            let current_count = parseInt(parentRow.find('.current_count').val());
+		            // AJAX를 사용하여 서버에 업데이트된 수량 전송
+		            $.ajax({
+		                url: "/rent/updatecount",
+		                type: "post",
+		                data: {"cart_id": cart_id, "cart_count": current_count, "stat":stat},
+		                dataType: "text",
+		                success: function(result) {
+		                    alert("성공");
+		                },
+		                error: function() {
+		                    alert("실패");
+		                }
+		            }); //ajax 끝
+		        }//updateQuantityOnServer
+    		});
+			</script>
 
 			    <tbody>
 			        <c:forEach var="product_rentcartDto" items="${list}">
@@ -258,15 +253,11 @@
 			</div>
 			<!-- //총 주문금액 -->
 
-		<!-- //장바구니에 상품이 있을경우 -->
-		
-		 
 	<a href="cpRent"><button type="button" class="cp_CartBtn">뒤로가기</button></a> 
 	<a href="cp_Cart02"><button type="button" class="cp_CartBtn">선택상품 주문하기</button></a> 
 	<a href="cp_Cart02"><button type="button" class="cp_CartBtn">전체상품 주문하기</button></a> 
       
 	</section>
-        
 		
 		<!-- ======= Footer ======= -->
 	  	<%@include file="../include/footer.jsp" %>

@@ -68,6 +68,7 @@
 						</dt>
 						<dd>
 							<input type="text" id="name" name="name" required/>
+							<span>한글만 가능합니다.</span>
 						</dd>
 					</dl>
 					<dl id="join_id_dl">

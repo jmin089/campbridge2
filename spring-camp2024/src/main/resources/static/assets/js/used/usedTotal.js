@@ -15,6 +15,7 @@ $(function(){
 	
 	$(".u_delBtn").click(function(){
 		var u_bno =  $(this).parent().parent().find('.tb-center').attr('class').split(' ')[1];
+		var u_btype = $("#u_btype").val();
 		window.location.href = '/used/usedDelete?u_bno='+u_bno+'&u_btype='+u_btype;window.location.href = '/used/usedDelete?u_bno='+u_bno+'&u_btype='+u_btype;
 		window.location.href = '/used/usedDelete?u_bno='+u_bno+'&u_btype='+u_btype;
 	});

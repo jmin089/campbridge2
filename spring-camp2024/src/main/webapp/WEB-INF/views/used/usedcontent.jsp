@@ -95,16 +95,16 @@
 						<input type="hidden" id="u_btype" value="${map.udto.u_btype}"/>
 						<input type="hidden" id ="u_bstatus" value="${map.udto.u_bstatus}"/>
 						
-						<div class="bbs-table-view" >
+						<div class="bbs-table-view used_content_con2" style="margin-top:-190px; margin-left:-255px;">
 							<table summary="게시글 보기">
 								<caption>게시글 보기</caption>
 								<thead>
 									<tr class="bbs-table-btitle">
-										<c:if test="${map.udto.u_bstatus=='1'}">
-										<th><div class="tb-center ${map.udto.u_bno}"><span style="color:#c3c3c3">[거래완료]</span> ${map.udto.u_btitle }</div></th>
-										</c:if>
 										<c:if test="${map.udto.u_bstatus=='0'}">
-										<th><div class="tb-center ${map.udto.u_bno}"><span style="color:#009223">[거래중]</span> ${map.udto.u_btitle }</div></th>
+										<th><div class="tb-center ${map.udto.u_bno}"><span style="color:#009223;">[거래중]</span> ${map.udto.u_btitle}</div></th>
+										</c:if>
+										<c:if test="${map.udto.u_bstatus=='1'}">
+										<th><div class="tb-center ${map.udto.u_bno}"><span style="color:#C3C3C3;">[거래완료]</span> ${map.udto.u_btitle}</div></th>
 										</c:if>
 									</tr>
 								</thead>
@@ -130,7 +130,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td class="data-bd line">
+										<td class="data-bd">
 											<div class="data-bd-cont">
 												${map.udto.u_bcontent }
 											</div>
@@ -140,7 +140,7 @@
 							</table>
 							<div id="comment_list_0"></div>
 								
-								<div class="bfile img_Upload line">
+								<div class="bfile img_Upload line lineup">
 									<tr>
 										<div class="img_name">
 											<td><strong>이미지</strong></td>
@@ -169,9 +169,11 @@
 										            </div>
 										        </c:forEach>
 										    </div>
+										    
 										    <div class="image_show">
 										    <h9 class="image_show_text">이미지를 클릭하면 크게 보실 수 있습니다.</h9>
 										    </div>
+										
 										</div>
 									</tr>
 								</div>
@@ -195,29 +197,25 @@
 								</div>
 
 								
-								<!-- 댓글입력창 -->
-								<table class="comment_table">
-									<tr>
-									</tr>
-								</table>
-
+								
 								<!-- 이전글/다음글-->
-								<table class="t_line line"style="margin-top: -150px; position: relative; top: 120px; font-size: 14px; width: 1100px;">
+								<table class="nextprecon line lineup"
+									style="margin-top: -150px; position: relative; top: 280px; font-size: 14px; width: 1100px;">
 									<tr>
 										<td colspan="4"><strong>이전글</strong> <span class="separator">|</span>
-										<c:if test="${map.nextudto!=null}">
-											<a href="usedcontent?u_bno=${map.nextudto.u_bno}&u_btype=${map.u_btype}">${map.nextudto.u_bno} || ${map.nextudto.u_btitle}</a></td>
+											<c:if test="${map.preudto!=null}">
+											<a href="usedcontent?u_bno=${map.nextudto.u_bno}&u_btype=${map.nextudto.u_btype}">${map.preudto.u_bno} || ${map.preudto.u_btitle}</a></td>
 										</c:if>
-										<c:if test="${map.nextudto==null }">
-											이전글 없습니다.
+										<c:if test="${map.preudto==null }">
+											다음글 없습니다.
 										</c:if>
 									</tr>
 									<tr>
 										<td colspan="4"><strong>다음글</strong> <span class="separator">|</span>
-											<c:if test="${map.preudto!=null}">
-											<a href="usedcontent?u_bno=${map.preudto.u_bno}&u_btype=${map.u_btype}">${map.preudto.u_bno} || ${map.preudto.u_btitle}</a></td>
+										<c:if test="${map.nextudto!=null}">
+											<a href="usedcontent?u_bno=${map.nextudto.u_bno}&u_btype=${map.nextudto.u_btype}">${map.nextudto.u_bno} || ${map.nextudto.u_btitle}</a></td>
 										</c:if>
-										<c:if test="${map.preudto==null }">
+										<c:if test="${map.nextudto==null }">
 											다음글 없습니다.
 										</c:if>
 									</tr>

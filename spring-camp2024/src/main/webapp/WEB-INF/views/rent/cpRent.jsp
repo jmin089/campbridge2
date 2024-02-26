@@ -32,6 +32,7 @@
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 	    <link href="../assets/css/header.css" rel="stylesheet">
 		<link href="../assets/css/rent/rentcart.css" rel="stylesheet">
+		<script src="../assets/js/rent/rent.js"></script>
 		
 	</head>
 	<body>
@@ -43,42 +44,18 @@
 			<h1 style="color:red;">※ 안내사항 ※</h1><br>
 			<div><img src="../assets/img/rent/cpRent0.png"></div>
 		
-			<!-- 모달 창 -->
+			<!-- 모달 창 시작 -->
 			<div id="myModal" class="modal">
 			  <div class="modal-content">
 			    <span class="close" onclick="closeModal()">&times;</span>
 			    <img id="modalImage" src="" alt="이미지">
 			  </div>
 			</div>
-			
-			<script>
-			// 모달 창을 표시하는 함수
-			function showModal(imageSrc) {
-			  var modal = document.getElementById("myModal");
-			  var modalImage = document.getElementById("modalImage");
-			  modalImage.src = imageSrc;
-			  modal.style.display = "block";
-			}
-			
-			// 모달 창을 닫는 함수
-			function closeModal() {
-			  var modal = document.getElementById("myModal");
-			  modal.style.display = "none";
-			  document.body.style.backgroundColor = "transparent"; // 배경을 투명하게 만듦
-			}
-			
-			// 모달 창 외부를 클릭했을 때 모달 창 닫기
-			window.onclick = function(event) {
-			  var modal = document.getElementById("myModal");
-			  if (event.target == modal) {
-			    modal.style.display = "none";
-			  }
-			}
-			</script>
+			<!-- 모달 창 끝 -->
 		   
 			<!-- 캠핑용품대여 -->
 		    	<h1>캠핑용품 대여</h1>
-		   <!-- 카드형 패키지 -->
+		   <!-- 카드형 패키지 시작 -->
 		    <div class="packList">
 		    <h3>패키지 상품</h3>
             <ul>
@@ -111,32 +88,14 @@
                     </div>
                 </li>
             </ul>
-        </div>
-        <script type="text/javascript">
-	    $(document).on("click", ".cp_CartBtn", function() {
-	        let session_id = "${session_id}";
-	        if (session_id === null || session_id === "") {
-	            alert("로그인을 하여야 다음으로 진행할 수 있습니다. 로그인 해주세요!");
-	            return false;
-	        }
-	        
-	        // 체크박스의 체크가 하나라도 선택 되어야 넘어가게 구현
-	        let checkboxes = document.querySelectorAll('input[name="pro_id"]:checked');
-	        if (checkboxes.length === 0) {
-	            alert("체크박스를 하나 이상 선택해주세요!");
-	            return false;
-	        }
-	     
-	        // 두개의 조건이 맞으면 넘어감!
-	        cp_CartFrm.submit();
-	        
-	     	// 선택된 체크박스 체크 해제
-	        checkboxes.forEach(function (checkbox) {
-	            checkbox.checked = false;
-	        });
-	    });
+        	</div>
+		   <!-- 카드형 패키지 끝 -->
+		   
+	    <script>
+		let session_id = "${session_id}";
 		</script>
-        <!-- 체크박스 -->
+
+		<!-- 체크박스 -->
         <form action="doCp_Cart" method="post" id="cp_CartFrm" name="cp_CartFrm">
 		  <div class="cp_check">
 		  		<h3>패키지 선택</h3>
@@ -239,16 +198,11 @@
 					</li>
 					
 		 		</ul>
-		 		
 		 		</dl>
 		  </div>
         </form>
-		  
 		  <a href="/"><button type="button" class="cp_CartBtn">메인으로</button></a> 
 		  <button type="button" class="cp_CartBtn">선택품목 담기</button>
-        
-        
-		
 		  </section>
 		<!-- ======= Footer ======= -->
 	  	<%@include file="../include/footer.jsp" %>

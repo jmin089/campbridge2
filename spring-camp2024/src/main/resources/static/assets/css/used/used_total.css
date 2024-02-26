@@ -7,9 +7,12 @@
 
 /*usedcontent.jsp*/
 
-#contentWrap {
-	height:1800px !important;
+.used_content_con2{
+	position:static !important;
+	margin-top:1700px;
+	margin-left: -255px;
 }
+
 
 .camp-img-div img{
 	position: relative;
@@ -78,7 +81,7 @@
 }
 
 .bbs-table-view tbody td{
-	padding:10px 30px;
+	padding:10px;
 }
 .cont_top_date{
 	padding-right:60px;
@@ -95,6 +98,8 @@
 	
 }
 
+.cont_top_price .content_blocal{
+}
 
 .content_hit{
 	margin-left:20px;
@@ -102,7 +107,7 @@
 }
 
 .tb-center{
-	padding-left:40px;
+	padding-left:60px;
 	font-weight: 600;
 }
 
@@ -118,8 +123,9 @@
 .line{
 	border-bottom: 2px solid #009223;
 }
-.t_line{
-	border-top: 2px solid #009223;
+
+.lineup{
+	border-top : 2px solid #009223;
 }
 .bfile{
 	display:flex;
@@ -269,10 +275,6 @@
 	
 }
 
-.comment_table{
-	height:10px;
-}
-
 /*하단버튼 */
 .u_list:hover{
 	float: right;
@@ -335,3 +337,9 @@
     width: 85px; 
     height: 80px;
 }
+
+.nextprecon strong{
+	padding-left: 30px;
+}
+
+

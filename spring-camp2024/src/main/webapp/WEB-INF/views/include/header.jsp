@@ -112,7 +112,7 @@
 	          <li class="dropdown"><a href="/review/siteReview">리뷰</a>
 		          <ul>
 		              <li><a href="/review/siteReview">캠핑장 리뷰</a></li>
-		              <li><a href="/review/equipReview">캠핑용품 리뷰</i></a></li>
+		            <!--   <li><a href="/review/equipReview">캠핑용품 리뷰</i></a></li> -->
 		          </ul>
 	          </li>
 	          <li><a href="/#contact">픽업장소</a></li>

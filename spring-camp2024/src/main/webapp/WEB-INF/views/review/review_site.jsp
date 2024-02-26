@@ -67,9 +67,9 @@
 						<br>
 						<!-- 캠핑장 리뷰 메뉴 끝 -->
 	
-						<form id="siteUpdateFrm" style="height: 1800px; position: relative; top: 100px; left: 270px;">
+						<form id="siteUpdateFrm" name="siteUpdateFrm" action="#" method="post" autocomplete="off" style="height: 1800px; position: relative; top: 100px; left: 270px;">
 						<input type="hidden" name="cps_bno" value="${map.c_redto.cps_bno}">
-						
+						</form>
 						<!-- 본문 시작 -->
 						<div class="bbs-table-view">
 							<table summary="게시글 보기">
@@ -241,7 +241,7 @@
 						<!-- 댓글보기 끝-->
 						
 						</div> <!-- bbs-table-view 본문 끝 -->
-						</form>
+						
 						
 					</div> <!-- .page-body -->
 				</div> <!-- #bbsData -->
