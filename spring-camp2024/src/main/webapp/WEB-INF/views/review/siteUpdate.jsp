@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>캠핑장리뷰_글작성</title>
+		<title>캠핑장리뷰_글수정</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	    <meta content="" name="description">
 	    <meta content="" name="keywords">
@@ -57,7 +57,7 @@
 		<section class="notice">
 		   
 			<!-- 글쓰기 -->
-	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">캠핑장리뷰 작성</h1>
+	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">캠핑장리뷰 수정</h1>
 			<form action="site_doUpdate" name="site_doUpdateFrm" method="post" enctype="multipart/form-data">
 			    <table>
 			    <input type="hidden" name="cps_bfile" value="${map.c_redto.cps_bfile}">

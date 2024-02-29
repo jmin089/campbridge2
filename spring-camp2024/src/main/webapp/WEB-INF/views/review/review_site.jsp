@@ -205,35 +205,6 @@
 				                    </c:if>
 				                </td>
 						    </tr>
-						    
-						    <!-- 수정창 시작-->
-						    <!--  
-						    <tr id="${Cps_comment.cps_bno}">
-				                <td style="border-bottom: 2px solid #eee; padding: 10px;">
-				                    <strong>댓글 작성자</strong> | <strong style="color: blue;">${Cps_comment.id}</strong>&nbsp;&nbsp;<span><fmt:formatDate value="${Cps_comment.cps_cdate}" pattern="YYYY-MM-DD HH:mm:ss"/></span>
-				                    <li class="review_replyTxt"><textarea cols="145%">${Cps_comment.cps_ccontent}</textarea></li>
-				                    <li id="replyBtn">
-				                        <button type="button" class="cps_cancel">취소</button>&nbsp;
-				                        <button type="button" class="cps_save">저장</button>
-				                    </li>
-				                </td>
-						    </tr>
-						    -->
-							<!-- 수정창 끝-->  
-							 
-							<!-- 비밀댓글 시작 -->
-							<!--  
-							<c:if test="${Cps_comment.cps_cpw !=null || Cps_comment.cps_cpw!='' }">
-								<tr id="${Cps_comment.cps_cno}">
-									<td style="border-bottom: 2px solid #eee; padding: 10px;">
-										<strong>댓글 작성자</strong> | <strong style="color: blue;">${Cps_comment.id}</strong>&nbsp;&nbsp;<span><fmt:formatDate value="${Cps_comment.cps_cdate}" pattern="YYYY-MM-dd HH:mm:ss"/></span>
-										<li class="review_replyTxt">※ 비밀 댓글입니다.</li>
-									</td>			
-								</tr>
-							</c:if>
-							-->
-							<!-- 비밀댓글 끝 -->
-							 
 					        </c:forEach>
 						    </tbody>
 						</table>

@@ -78,7 +78,7 @@
 		                current_count.val(count - 1);
 		                updateTotalPrice($(this));
 		                stat = "countDown";
-		                updateQuantityOnServer($(this),stat);
+		                UpdateBtn($(this),stat);
 		            }
 		        }
 
@@ -89,7 +89,7 @@
 		            current_count.val(count + 1);
 		            updateTotalPrice($(this));
 		            stat = "countUp";
-		            updateQuantityOnServer($(this),stat);
+		            UpdateBtn($(this),stat);
 		        }
 
 		        // 합계금액을 업데이트하는 함수
@@ -103,7 +103,7 @@
 		        }
 
 		        // 서버에 수량 업데이트 함수
-		        function updateQuantityOnServer(countBtn,stat) {
+		        function UpdateBtn(countBtn,stat) {
 		            let parentRow = countBtn.closest("tbody");            
 		            let cart_id = parentRow.find('.cart_id').val();
 		            let current_count = parseInt(parentRow.find('.current_count').val());
@@ -120,7 +120,7 @@
 		                    alert("실패");
 		                }
 		            }); //ajax 끝
-		        }//updateQuantityOnServer
+		        }//UpdateBtn
     		});
 			</script>
 
@@ -181,11 +181,11 @@
 									</script>
 							    </ul>
 							</td>
-   							
 			            </tr>
 			        </c:if>
 			        </c:forEach>
 			    </tbody>
+			    
 				</table>
 			</div>
 			

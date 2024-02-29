@@ -79,7 +79,7 @@ public class RentController {
 		return "/rent/cp_Cart";
 	}
 	
-	//품목삭제 버튼으로 해당품목만 삭제
+	//품목삭제 버튼으로 해당품목만 삭제(단수)
 	@PostMapping("deleteOneCart")
 	@ResponseBody
 	public int deleteOneCart(@RequestParam(value = "cart_id") String cart_id) throws Exception {
@@ -90,7 +90,7 @@ public class RentController {
 	   return result;    
 	}
 	
-	//선택상품 삭제하기
+	//선택상품 삭제하기(복수)
 	@PostMapping("deleteCart")
 	@ResponseBody
 	public int deleteCart(@RequestParam(value = "cart_id[]") List<String> cart_id) {
@@ -101,7 +101,7 @@ public class RentController {
 	    result = 1;
 	   return result;    
 	}
-	//
+	//수량의 증감
 	@PostMapping("/updatecount")
 	@ResponseBody
 	public String updatecount(@RequestParam String cart_id, @RequestParam int cart_count, @RequestParam String stat) {

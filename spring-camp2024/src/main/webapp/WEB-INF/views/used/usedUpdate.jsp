@@ -72,9 +72,9 @@
 			    <table class="usedW_table">
 			     <colgroup>
 			        <col width="5%">
-			        <col width="20%">
-			        <col width="25%">
+			        <col width="10%">
 			        <col width="50%">
+			        <col width="35%">
 	   			</colgroup>
 			      <tr>
 			        <th class="update_btype" data-btype="${map.udto.u_btype}" style="text-align: center;">

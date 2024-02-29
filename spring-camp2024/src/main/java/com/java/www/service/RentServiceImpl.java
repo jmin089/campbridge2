@@ -35,19 +35,19 @@ public class RentServiceImpl implements RentService{
 	public void rentUpdate(String proId) {
 		rentMapper.updatecount(proId);
 	}
-	// 품목삭제 버튼으로 해당품목만 삭제
+	
+	// 품목삭제 버튼으로 해당품목만 삭제(단수)
 	@Override
 	public void deleteOneCart(String cart_id) {
 		rentMapper.deleteOneCart(cart_id);
-		System.out.println("del : "+cart_id);
 	}
-	// 선택상품 삭제하기
+	// 선택상품 삭제하기(복수)
 	@Override
 	public void deleteCart(String cart_id) {
 		rentMapper.deleteCart(cart_id);
-		
 	}
-	// 수량변경
+	
+	// 수량의 증감
 	@Override
 	public Map<String, Object> updatecount(String cart_id, int cart_count, String stat) {
 		if(stat.equals("countUp")) {

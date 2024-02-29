@@ -55,4 +55,5 @@
 	<update id="updatecount">
 		update rent_cart set cart_count=cart_count+1 where pro_id=#{pro_id}
 	</update>
+	
 </mapper>
